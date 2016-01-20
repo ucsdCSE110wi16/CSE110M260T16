@@ -6,7 +6,7 @@ Time: 10 days
 Priority: 10
 Time: 10 days
 
-3. Send notifications for task assignment and completion
+3. Handle task assignment and completion
 Priority: 20
 Time: 5 days
 
