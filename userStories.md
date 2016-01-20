@@ -1,17 +1,27 @@
-1. Allowing people to create tasks (groups) assigning
+1. Create, view and assign tasks to members of the task list
+Priority: 10
+Time: 10 days
 
-2. More managing of tasks, grouping tasks together
+2. Logging In and creating task lists 
+Priority: 10
+Time: 10 days
 
-3. Notifications
-  - when assigned/unassigned
-  - who did that 
+3. Send notifications for task assignment and completion
+Priority: 20
+Time: 5 days
 
-4. Implement the log
+4. Enable randomization of task assignment
+Priority: 30
+Time: 5 days
 
-5. Randomize locking mechanic assignment
+5. Enable locking of task assignment
+Priority: 40
+Time: 5 days
 
-6. locking every person should agree
+6. View log of tasks (completion, assignment, creation)
+Priority: 20
+Time: 7 days
 
-7. login, signup screen
-
-8. chat function
+7. Communication capability between members of a task list
+Priority: 50 
+Time: 14 days
