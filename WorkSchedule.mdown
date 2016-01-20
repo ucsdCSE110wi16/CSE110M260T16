@@ -1,39 +1,45 @@
 Week 3:
 (Learn Android Studio)
 
-Create, view and assign tasks to members of the task list
- - Create an interface for viewing the members of a task list
- - Create an interface for viewing the tasks within the task list
- - Add functionality to create a new task, delete
- 	- tasks should have repeating functionality
- - Add functionality to assign a task to a member
+Logging In and creating task lists
+- Create a sign up interface
+- Integrate Parse(?) for back-end
+- Allow user to create a task list (private)
+- Allow user to invite other users into a task list
+- Create log in interface
+- Link task lists to task list view
 
 
 Week 4:
-Create, view and assign tasks to members of the task list (continued)
+
+
+Logging In and creating task lists (continued)
+- Create a sign up interface
+- Integrate Parse(?) for back-end
+- Allow user to create a task list (private)
+- Allow user to invite other users into a task list
+- Create log in interface
+- Link task lists to task list view
+
+
+
+Create, view and assign tasks to members of the task list 
  - Create an interface for viewing the members of a task list
  - Create an interface for viewing the tasks within the task list
  - Add functionality to create a new task, delete
  - Add functionality to assign a task to a member
 
 
-Logging In and creating task lists
- - Create a sign up interface
- - Integrate Parse(?) for back-end
- - Allow user to create a task list (private)
- - Allow user to invite other users into a task list
- - Create log in interface
- - Link task lists to task list view
+
 
 
 Week 5:
-Logging In and creating task lists (continued)
- - Create a sign up interface
- - Integrate Parse(?) for back-end
- - Allow user to create a task list (private)
- - Allow user to invite other users into a task list
- - Create log in interface
- - Link task lists to task list view
+Create, view and assign tasks to members of the task list (continued)
+- Create an interface for viewing the members of a task list
+- Create an interface for viewing the tasks within the task list
+- Add functionality to create a new task, delete
+- Add functionality to assign a task to a member
+
 
 
 Week 6:
