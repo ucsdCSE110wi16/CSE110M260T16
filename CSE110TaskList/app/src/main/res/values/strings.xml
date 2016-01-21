@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CSE110 TaskList</string>
+    <string name="action_settings">Settings</string>
+</resources>
