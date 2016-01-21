@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import android.content.Intent;
+import android.widget.Button;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,10 +25,6 @@ public class MainActivity extends AppCompatActivity {
         // https://parse.com/docs/android/guide#local-datastore
         Parse.enableLocalDatastore(this);
         Parse.initialize(this);
-
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,5 +60,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onButtonClick(View v) {
+        if (v.getId() == R.id.B_signInForm) {
+            Intent i = new Intent(this,SignIn.class);
+            startActivity(i);
+        }
+
     }
 }
