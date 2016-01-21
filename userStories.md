@@ -1,8 +1,14 @@
 1. Create, view and assign tasks to members of the task list
+ As a roomate
+ I want to be able to create and assign tasks (e.g. chores) to myself and my roommates
+ So that responsibilities and obligations are clearly defined and carried out
  - Priority: 10
  - Time: 10 days
 
 2. Logging In and creating task lists 
+ As a customer
+ I want to be able to create a self entitity in the task app
+ So that I can manage my own task lists that I'm a part of and manage my own tasks within those task lists
  - Priority: 10
  - Time: 10 days
 
