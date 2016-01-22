@@ -1,5 +1,5 @@
 1. Create, view and assign tasks to members of the task list
- - As a roomate
+ - As a roommate
  - I want to be able to create and assign tasks (e.g. chores) to myself and my roommates
  - So that responsibilities and obligations are clearly defined and carried out
  - Priority: 10
@@ -7,7 +7,7 @@
 
 2. Logging In and creating task lists 
  - As a customer
- - I want to be able to create a self entitity in the task app
+ - I want to be able to create a self entity in the task app
  - So that I can manage my own task lists that I'm a part of and manage my own tasks within those task lists
  - Priority: 10
  - Time: 10 days
@@ -17,17 +17,23 @@
  - Time: 5 days
 
 4. Enable randomization of task assignment
+ - As a roommate
+ - I want to be able to have tasks randomly assigned to all roommates
+ - So that someone doesn't end up with an easy or difficult task every week and does as even amount of work in the long run
  - Priority: 30
  - Time: 5 days
 
 5. Enable locking of task assignment
  - Priority: 40
- -Time: 5 days
+ - Time: 5 days
 
 6. View log of tasks (completion, assignment, creation)
  - Priority: 20
  - Time: 7 days
 
 7. Communication capability between members of a task list
+ - As a roommate
+ - I want to be able to chat with the other members within the app to give them status updates
+ - So if I or someone else can't complete our task for some reason or need help everyone will be notified
  - Priority: 50 
  - Time: 14 days
