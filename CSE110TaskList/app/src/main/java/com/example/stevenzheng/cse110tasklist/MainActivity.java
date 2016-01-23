@@ -64,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if (v.getId() == R.id.B_signInForm) {
-            Intent i = new Intent(this,SignIn.class);
+            Intent i = new Intent(this, SignIn.class);
+            startActivity(i);
+        } else if (v.getId() == R.id.B_signUp) {
+            Intent i = new Intent(this, SignUp.class);
             startActivity(i);
         }
 
