@@ -31,5 +31,6 @@
         android:text="Sign In"
         android:id="@+id/B_signIn"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonClick" />
 </RelativeLayout>
