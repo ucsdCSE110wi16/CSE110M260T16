@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="First Name"
+        android:hint="First Name"
         android:ems="10"
         android:id="@+id/TextField_firstName"
         android:layout_marginTop="46dp"
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Last Name"
+        android:hint="Last Name"
         android:ems="10"
         android:id="@+id/TextField_lastName"
         android:layout_below="@+id/TextField_firstName"
@@ -35,7 +35,7 @@
         android:layout_below="@+id/TextField_lastName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Password" />
+        android:hint="Password" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,12 +46,12 @@
         android:layout_below="@+id/TextField_password"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="Email Address" />
+        android:hint="Email Address" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:hint="Done"
         android:id="@+id/B_done"
         android:layout_below="@+id/TextField_email"
         android:layout_alignParentLeft="true"
