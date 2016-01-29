@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Task List App"
+        android:text="@string/main_name"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -25,18 +25,41 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to sign in form"
+        android:text="@string/sign_in"
         android:id="@+id/B_signInForm"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/B_signUp"
+        android:layout_marginTop="115dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:id="@+id/B_signUp"
-        android:layout_below="@+id/B_signInForm"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/B_signInForm"
         android:onClick="onButtonClick" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/B_signUp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/info"
+        android:layout_below="@+id/login_button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="110dp" />
+
 </RelativeLayout>
