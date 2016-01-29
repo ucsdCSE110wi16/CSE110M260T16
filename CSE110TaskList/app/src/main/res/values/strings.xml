@@ -7,4 +7,12 @@
     <string name="main_name">Task List App</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
+
+    <string name="developed_by"><u>Developed by</u></string>
+    <string name="dev_1">Manaf Alajmi</string>
+    <string name="dev_2">Nikola Gargov</string>
+    <string name="dev_3">John Hurst</string>
+    <string name="dev_4">Abhishek Kumar</string>
+    <string name="dev_5">Neil Sengupta</string>
+    <string name="dev_6">Steven Zheng</string>
 </resources>

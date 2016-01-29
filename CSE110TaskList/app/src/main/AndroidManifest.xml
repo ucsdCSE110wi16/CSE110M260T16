@@ -38,6 +38,11 @@
 
         <activity android:name=".SignIn"></activity>
         <activity android:name=".SignUp"></activity>
+        <activity
+            android:name=".About"
+            android:label="@string/action_about"
+            android:parentActivityName=".MainActivity" >
+        </activity>
     </application>
 
 </manifest>
