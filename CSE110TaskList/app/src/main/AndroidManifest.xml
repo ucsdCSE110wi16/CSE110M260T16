@@ -43,6 +43,9 @@
             android:label="@string/action_about"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".CreateTaskList"></activity>
+        <activity android:name=".AddTaskList"></activity>
     </application>
 
 </manifest>

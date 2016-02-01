@@ -9,8 +9,10 @@ import android.widget.EditText;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.Parse;
 import com.parse.SignUpCallback;
 import android.widget.Toast;
+import android.util.Log;
 
 /**
  * Created by stevenzheng on 1/23/16.
@@ -24,12 +26,16 @@ public class SignUp extends Activity {
     String firstName;
     String lastName;
 
+    Intent i;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
 
         newUser = new ParseUser();
+        i = new Intent(this, MainMenu.class);
 
     }
 
@@ -79,6 +85,10 @@ public class SignUp extends Activity {
             newUser.put("firstName", firstName);
             newUser.put("lastName", lastName);
 
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (currentUser != null) {
+                currentUser.logOut();
+            }
             newUser.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -86,8 +96,11 @@ public class SignUp extends Activity {
                     // Sign up successful
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Signup complete!", Toast.LENGTH_SHORT).show();
+
+                        startActivity(i);
                         // Error
                     } else {
+                        Log.d("error",e.toString());
                         Toast.makeText(getApplicationContext(), "Error in signup", Toast.LENGTH_SHORT).show();
                     }
                 }

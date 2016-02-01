@@ -8,6 +8,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.LogInCallback;
 import android.widget.Toast;
+import android.content.Intent;
 
 /**
  * Created by stevenzheng on 1/20/16.
@@ -16,11 +17,13 @@ public class SignIn extends Activity {
 
     String password;
     String email;
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+        i = new Intent(this, MainMenu.class);
     }
 
     public void onButtonClick(View v) {
@@ -42,6 +45,7 @@ public class SignIn extends Activity {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
                     // Hooray! The user is logged in.
+                    startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Username/Password incorrect", Toast.LENGTH_SHORT).show();
                 }
