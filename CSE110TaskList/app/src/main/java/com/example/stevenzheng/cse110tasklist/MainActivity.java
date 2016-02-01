@@ -24,6 +24,7 @@ import com.parse.ParseObject;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 info.setText(
                         "User ID: " + loginResult.getAccessToken().getUserId() + "\n" +
-                        "Auth Token: " + loginResult.getAccessToken().getToken()
+                                "Auth Token: " + loginResult.getAccessToken().getToken()
                 );
             }
 
@@ -121,3 +122,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

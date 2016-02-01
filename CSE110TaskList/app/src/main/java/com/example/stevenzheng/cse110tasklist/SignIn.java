@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.LogInCallback;
+import android.widget.Toast;
 
 /**
  * Created by stevenzheng on 1/20/16.
@@ -42,7 +43,7 @@ public class SignIn extends Activity {
                 if (user != null) {
                     // Hooray! The user is logged in.
                 } else {
-                    // Signup failed. Look at the ParseException to see what happened.
+                    Toast.makeText(getApplicationContext(), "Username/Password incorrect", Toast.LENGTH_SHORT).show();
                 }
             }
         });

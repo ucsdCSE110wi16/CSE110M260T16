@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import android.widget.Toast;
 
 /**
  * Created by stevenzheng on 1/23/16.
@@ -62,6 +63,15 @@ public class SignUp extends Activity {
             textField = (EditText)findViewById(R.id.TextField_password);
             password = textField.getText().toString();
 
+            if (isBadEmail()) {
+                Toast.makeText(getApplicationContext(), "Invalid Email",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (isBadPassword()) {
+                Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             newUser.setUsername(username);
             newUser.setPassword(password);
@@ -75,15 +85,24 @@ public class SignUp extends Activity {
 
                     // Sign up successful
                     if (e == null) {
-
-
-                    // Error
+                        Toast.makeText(getApplicationContext(), "Signup complete!", Toast.LENGTH_SHORT).show();
+                        // Error
                     } else {
-
+                        Toast.makeText(getApplicationContext(), "Error in signup", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
 
+    }
+
+    private boolean isBadPassword () {
+        return (password.length() < 6);
+    }
+
+    private boolean isBadEmail() {
+        if (!email.contains(".") || !email.contains("@"))
+            return true;
+        return (email.lastIndexOf(".") <= email.lastIndexOf("@"));
     }
 }
