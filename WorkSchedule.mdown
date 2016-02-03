@@ -23,17 +23,19 @@ Logging In and creating task lists (continued)
 
 
 
-Create, view and assign tasks to members of the task list 
- - Create an interface for viewing the members of a task list
- - Create an interface for viewing the tasks within the task list
- - Add functionality to create a new task, delete
- - Add functionality to assign a task to a member
-
-
-
 
 
 Week 5:
+
+Logging In and creating task lists (continued)
+- Create a sign up interface
+- Integrate Parse(?) for back-end
+- Allow user to create a task list (private)
+- Allow user to invite other users into a task list
+- Create log in interface
+- Link task lists to task list view
+
+Week 6:
 Create, view and assign tasks to members of the task list (continued)
 - Create an interface for viewing the members of a task list
 - Create an interface for viewing the tasks within the task list
@@ -42,34 +44,27 @@ Create, view and assign tasks to members of the task list (continued)
 
 
 
-Week 6:
+Week 7:
 Handle task assignment and completion
  - Allow users to complete tasks
  - Manage task assignment between users, drop assignment
  - Send notifications to users when task is assigned, completed
 
 
-Week 7:
+Week 8:
 Enable randomization of task assignment
  - Design a fair randomization algorithm
  - Implement it as an option for task assignment
 
 
-Week 8:
+Week 9:
 Enable locking of task assignment
  - Add a flag to task, task group, that denotes whether it can be reassigned
  - Implement a voting system where users can decide to lock an assignment
 
 
-Week 9:
+Week 10:
 View log of tasks (completion, assignment, creation)
  - Store task completion, assignment, and creation data
  - Display data in log
 
-Week 10:
-
-(Catch up on above user-stories)
-
-Communication capability between members of a task list (bonus)
- - Add capability OR
- - Add notification ability (notify users in app, verbal discussion outside of chat)
