@@ -1,22 +1,23 @@
 package com.example.stevenzheng.cse110tasklist;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+import org.json.JSONArray;
+import java.util.List;
 
+import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import android.widget.Toast;
 
 /**
  * Created by stevenzheng on 2/1/16.
  */
-public class CreateTaskList extends Activity {
+public class CreateGroup extends Activity {
 
     ParseUser currentUser;
     private EditText groupCodeView;
@@ -32,7 +33,7 @@ public class CreateTaskList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_task_list);
+        setContentView(R.layout.create_group);
         currentUser = ParseUser.getCurrentUser();
     }
 
@@ -40,16 +41,26 @@ public class CreateTaskList extends Activity {
         if (v.getId() == R.id.B_create) {
 
             groupNameView = (EditText) findViewById(R.id.TextField_taskListName);
-            groupCodeView = (EditText) findViewById(R.id.TextField_password);
+            groupPasswordView = (EditText) findViewById(R.id.TextField_password);
             groupNameTxt = groupNameView.getText().toString();
             groupPasswordTxt = groupPasswordView.getText().toString();
 
-            // Group newGroup = new Group(groupNameTxt, groupPasswordTxt);  FIX THIS!!!!
-            //currentUser.put("groups", "testing");
+            //Group group = new Group(groupNameTxt, groupPasswordTxt);
+            // Create the new group
+            ParseObject newGroup =  new ParseObject("Group");
+            newGroup.put("name", groupNameTxt);
+            newGroup.put("password", groupPasswordTxt);
+            newGroup.saveInBackground();
 
+            // Get user's current groups
+            ArrayList<ParseObject> groups = new ArrayList<ParseObject>();
+            groups = (ArrayList<ParseObject>)((List<ParseObject>) (Object) (currentUser.getList("groupsList")));
 
-            //finishActivity();  figure this out
-            //finish();
+            // Append the new group and update current user with their new group list
+            groups.add(newGroup);
+            currentUser.put("groupsList", groups);
+            currentUser.saveInBackground();
+            finish();
         }
     }
 }

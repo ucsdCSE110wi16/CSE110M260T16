@@ -40,10 +40,10 @@ public class MainMenu extends Activity {
 
     public void onButtonClick(View v) {
         if (v.getId() == R.id.B_addNewList) {
-            Intent i = new Intent(this, AddTaskList.class);
+            Intent i = new Intent(this, AddGroup.class);
             startActivity(i);
         } else if (v.getId() == R.id.B_createNewList) {
-            Intent i = new Intent(this, CreateTaskList.class);
+            Intent i = new Intent(this, CreateGroup.class);
             startActivity(i);
         }
 

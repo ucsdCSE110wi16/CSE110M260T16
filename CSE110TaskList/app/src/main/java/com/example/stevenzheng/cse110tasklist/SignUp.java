@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.Parse;
 import com.parse.SignUpCallback;
 import android.widget.Toast;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by stevenzheng on 1/23/16.
@@ -55,7 +58,11 @@ public class SignUp extends Activity {
     }
 
     public void onButtonClick(View v) {
+
+        // Done filling out sign up info
         if (v.getId() == R.id.B_done) {
+
+            // Get sign up info from user input
             EditText textField = (EditText)findViewById(R.id.TextField_firstName);
             firstName = textField.getText().toString();
 
@@ -79,16 +86,25 @@ public class SignUp extends Activity {
                 return;
             }
 
+
+            // Set basic info for new user
             newUser.setUsername(username);
             newUser.setPassword(password);
             newUser.setEmail(email);
             newUser.put("firstName", firstName);
             newUser.put("lastName", lastName);
 
+            // New user has empty array of groups
+            ArrayList<ParseObject> groups = new ArrayList<ParseObject>();
+            newUser.put("groupsList", groups);
+
+            // Make sure current user is null before trying to sign up
             ParseUser currentUser = ParseUser.getCurrentUser();
             if (currentUser != null) {
                 currentUser.logOut();
             }
+
+            // Sign user up
             newUser.signUpInBackground(new SignUpCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -96,6 +112,7 @@ public class SignUp extends Activity {
                     // Sign up successful
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Signup complete!", Toast.LENGTH_SHORT).show();
+
 
                         startActivity(i);
                         // Error

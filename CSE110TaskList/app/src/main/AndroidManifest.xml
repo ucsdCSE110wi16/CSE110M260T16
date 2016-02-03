@@ -44,8 +44,8 @@
             android:parentActivityName=".MainActivity" >
         </activity>
         <activity android:name=".MainMenu"></activity>
-        <activity android:name=".CreateTaskList"></activity>
-        <activity android:name=".AddTaskList"></activity>
+        <activity android:name=".CreateGroup"></activity>
+        <activity android:name=".AddGroup"></activity>
     </application>
 
 </manifest>
