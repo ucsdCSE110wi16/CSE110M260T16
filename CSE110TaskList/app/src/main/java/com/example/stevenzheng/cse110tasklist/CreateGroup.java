@@ -63,6 +63,8 @@ public class CreateGroup extends Activity {
             groups.add(newGroup);
             currentUser.put("groupsList", groups);
             currentUser.saveInBackground();
+
+            // Refresh main menu and finish
             setResult(RESULT_OK, null);
             finish();
         }
