@@ -48,8 +48,11 @@ public class CreateGroup extends Activity {
             //Group group = new Group(groupNameTxt, groupPasswordTxt);
             // Create the new group
             ParseObject newGroup =  new ParseObject("Group");
+            ArrayList<ParseUser> members = new ArrayList<ParseUser>();
+            members.add(currentUser);
             newGroup.put("name", groupNameTxt);
             newGroup.put("password", groupPasswordTxt);
+            newGroup.put("members", members);
             newGroup.saveInBackground();
 
             // Get user's current groups
@@ -60,6 +63,7 @@ public class CreateGroup extends Activity {
             groups.add(newGroup);
             currentUser.put("groupsList", groups);
             currentUser.saveInBackground();
+            setResult(RESULT_OK, null);
             finish();
         }
     }

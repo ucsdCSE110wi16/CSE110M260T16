@@ -42,4 +42,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/List_groups"
+        android:layout_below="@+id/Text_taskLists"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/B_addNewList"
+        android:choiceMode="singleChoice" />
 </RelativeLayout>
