@@ -31,7 +31,7 @@ Logging In and creating task lists (continued)
 - Create a sign up interface
 - Integrate Parse(?) for back-end
 - Allow user to create a task list (private)
-- Allow user to invite other users into a task list
+- Allow user to invite other users into a task list (offline right now)
 - Create log in interface
 - Link task lists to task list view
 
