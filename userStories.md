@@ -5,12 +5,34 @@
  - Priority: 10
  - Time: 10 days
 
+ - Given I already am a member of a task list
+ - When I press one of my task lists on the main menu
+ - Then I will enter a private room, showing the members of that task list, as long as the created tasks
+
+ - Given that I am on the main menu screen
+ - When I finish creating or adding a task
+ - Then I will go back to the main menu
+
 2. Logging In and creating task lists 
  - As a customer
  - I want to be able to create a self entity in the task app
  - So that I can manage my own task lists that I'm a part of and manage my own tasks within those task lists
  - Priority: 10
  - Time: 10 days
+
+ - Given I already have an account
+ - When I log in
+ - Then I will see all the task lists that I am a part of
+
+ - Given I am already logged in
+ - Then when I open the app
+ - I will go straight to the main menu view
+
+ - Given I do not have an account
+ - When when I press sign up
+ - Then I can fill out my sign up info
+ - When I finish
+ - THen I can see my main menu page
 
 3. Handle task assignment and completion
  - As a customer
