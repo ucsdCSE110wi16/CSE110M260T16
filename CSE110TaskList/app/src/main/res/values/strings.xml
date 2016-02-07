@@ -15,4 +15,8 @@
     <string name="dev_4">Abhishek Kumar</string>
     <string name="dev_5">Neil Sengupta</string>
     <string name="dev_6">Steven Zheng</string>
+
+    <string name="task_lists">Task Lists</string>
+    <string name="create_new_list">Create New List</string>
+    <string name="create_task_list">Create Task List</string>
 </resources>

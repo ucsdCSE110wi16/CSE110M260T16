@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Task Lists"
+        android:text="@string/task_lists"
         android:id="@+id/Text_taskLists"
         android:layout_below="@+id/Text_name"
         android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New List"
+        android:text="@string/create_new_list"
         android:id="@+id/B_createNewList"
         android:onClick="onButtonClick"
         android:layout_alignParentBottom="true"
