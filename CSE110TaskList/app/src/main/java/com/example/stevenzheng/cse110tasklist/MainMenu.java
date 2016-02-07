@@ -29,6 +29,7 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
  */
 public class MainMenu extends Activity {
 
+    static String groupName;
     ParseUser currentUser;
     ListView groupsList;
 
@@ -70,7 +71,7 @@ public class MainMenu extends Activity {
 
             groupsList.setAdapter(adapter);
 
-            /*
+
             groupsList.setOnItemClickListener(new OnItemClickListener() {
 
                 @Override
@@ -78,7 +79,7 @@ public class MainMenu extends Activity {
                                         int position, long id) {
 
                     // ListView Clicked item index
-                    int itemPosition     = position;
+                    int itemPosition  = position;
 
                     // ListView Clicked item value
                     String  itemValue    = (String) groupsList.getItemAtPosition(position);
@@ -87,10 +88,14 @@ public class MainMenu extends Activity {
                     Toast.makeText(getApplicationContext(),
                             "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                             .show();
+                    groupName = itemValue;
+                    Intent i = new Intent(MainMenu.this,TaskList.class);
+                    startActivity(i);
+
 
                 }
 
-            }); */
+            });
 
 
         } else {
@@ -133,6 +138,13 @@ public class MainMenu extends Activity {
 
     }
 
+
+    public void goToList(View v)
+    {
+        Intent i = new Intent (this, TaskList.class);
+        startActivity(i);
+
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

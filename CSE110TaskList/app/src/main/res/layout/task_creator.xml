@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/submitTask"
+        android:layout_gravity="center_horizontal"
+        android:onClick="submitTask" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskName"
+        android:layout_gravity="center_horizontal"
+        android:text="taskName" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskDesc"
+        android:text="taskDesc"
+        android:clickable="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/taskDificulty"
+        android:text="taskDificulty"
+        android:clickable="true"
+        android:editable="true" />
+
+    <DatePicker
+        android:layout_width="297dp"
+        android:layout_height="155dp"
+        android:id="@+id/taskDate"
+        android:layout_weight="0.67"
+        android:clickable="true"
+        android:minDate="today"
+        android:spinnersShown="true" />
+
+</LinearLayout>
