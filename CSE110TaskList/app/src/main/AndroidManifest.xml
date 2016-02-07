@@ -46,6 +46,7 @@
         <activity android:name=".MainMenu"></activity>
         <activity android:name=".CreateGroup"></activity>
         <activity android:name=".AddGroup"></activity>
+        <activity android:name=".TaskList"></activity>
     </application>
 
 </manifest>
