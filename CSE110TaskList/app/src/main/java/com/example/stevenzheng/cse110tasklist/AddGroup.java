@@ -65,10 +65,11 @@ public class AddGroup extends Activity {
                                     ArrayList<ParseObject> groups = new ArrayList<ParseObject>();
                                     groups = (ArrayList<ParseObject>) ((List<ParseObject>) (Object) (currentUser.getList("groupsList")));
                                     // Append the new group and update current user with their new group list
-                                    object.add("members", currentUser.getString("firstName"));
+                                    object.add("members", currentUser);
                                     groups.add(object);
                                     currentUser.put("groupsList", groups);
                                     currentUser.saveInBackground();
+
 
                                     // Refresh main menu and finish
                                     setResult(RESULT_OK, null);
