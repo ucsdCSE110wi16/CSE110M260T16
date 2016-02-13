@@ -47,6 +47,8 @@
         <activity android:name=".CreateGroup"></activity>
         <activity android:name=".AddGroup"></activity>
         <activity android:name=".TaskList"></activity>
+        <activity android:name=".TaskCreator"></activity>
+        <activity android:name=".Members"></activity>
     </application>
 
 </manifest>

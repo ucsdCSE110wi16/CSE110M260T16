@@ -11,7 +11,7 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="create task"
         android:id="@+id/submit"
@@ -26,7 +26,9 @@
         android:id="@+id/taskList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/submit" />
+        android:layout_below="@+id/submit"
+        android:layout_alignRight="@+id/submit"
+        android:layout_alignEnd="@+id/submit" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,5 +42,15 @@
         android:layout_toLeftOf="@+id/submit"
         android:layout_toStartOf="@+id/submit"
         android:text="Group Name" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Members"
+        android:id="@+id/B_Members"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/submit"
+        android:layout_toStartOf="@+id/submit"
+        android:onClick="onMembersClick" />
 
 </RelativeLayout>
