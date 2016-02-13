@@ -1,12 +1,16 @@
 package com.example.stevenzheng.cse110tasklist;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.widget.AdapterView.OnItemClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -18,7 +22,7 @@ import java.util.ArrayList;
 public class TaskList extends Activity {
 
     static ListView lv;
-    static ArrayList<String> list=  new ArrayList<String>();
+    static ArrayList<Task> list=  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +34,44 @@ public class TaskList extends Activity {
 
         lv = (ListView) findViewById(R.id.taskList);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+        ArrayAdapter<Task> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,list);
         lv.setAdapter(adapter);
 
+        /*lv.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                String  itemValue    = (String) lv.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+        */
 
     }
 
-    public static void addToList( String task)
+    public static void addToList(Task task)
     {
         list.add(task);
         lv.invalidateViews();
-
-
-
     }
 
+
+    public void onMembersClick(View v) {
+        Intent i = new Intent(this, Members.class);
+        startActivity(i);
+    }
     public void buttonOnClick(View v)
     {
 
@@ -65,3 +92,4 @@ String temp = edit.getText().toString();
 
 
 }
+

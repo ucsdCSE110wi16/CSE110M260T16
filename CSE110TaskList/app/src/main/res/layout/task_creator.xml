@@ -32,17 +32,24 @@
         android:inputType="numberSigned"
         android:ems="10"
         android:id="@+id/taskDificulty"
-        android:text="taskDificulty"
+        android:text="taskDifficulty"
         android:clickable="true"
         android:editable="true" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weekly"
+        android:id="@+id/repetitive"
+        android:checked="false" />
+
     <DatePicker
-        android:layout_width="297dp"
-        android:layout_height="155dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/taskDate"
-        android:layout_weight="0.67"
         android:clickable="true"
         android:minDate="today"
-        android:spinnersShown="true" />
+        android:spinnersShown="true"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

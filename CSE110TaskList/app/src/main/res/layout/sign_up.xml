@@ -10,7 +10,6 @@
         android:hint="First Name"
         android:ems="10"
         android:id="@+id/TextField_firstName"
-        android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -23,8 +22,8 @@
         android:ems="10"
         android:id="@+id/TextField_lastName"
         android:layout_below="@+id/TextField_firstName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/TextField_firstName"
+        android:layout_alignStart="@+id/TextField_firstName" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -32,10 +31,10 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/TextField_password"
+        android:hint="Password"
         android:layout_below="@+id/TextField_lastName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Password" />
+        android:layout_alignLeft="@+id/TextField_lastName"
+        android:layout_alignStart="@+id/TextField_lastName" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,14 +52,9 @@
         android:layout_height="wrap_content"
         android:hint="Done"
         android:id="@+id/B_done"
-        android:layout_below="@+id/TextField_email"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="48dp"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/TextField_email"
+        android:layout_alignEnd="@+id/TextField_email" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText" />
 </RelativeLayout>

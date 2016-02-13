@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -28,23 +29,19 @@ public class TaskCreator extends Activity {
         TextView taskName = (TextView) findViewById(R.id.taskName);
         TextView taskDesc = (TextView) findViewById(R.id.taskDesc);
         TextView taskDifc = (TextView) findViewById(R.id.taskDificulty);
+        CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
-
-
 
 
         String name = taskName.getText().toString();
         String desc  = taskDesc.getText().toString();
         String difc = taskDifc.getText().toString();
+        boolean rep = repetitive.isChecked();
         int day = endDate.getDayOfMonth();
         int month = endDate.getMonth();
         int year =  endDate.getYear();
 
-        taskDesc.setText("");
-        taskName.setText("");
-        taskDifc.setText("");
-
-        String temp = name+","+desc+","+difc+","+month+ "," +day+","+ year;
+        Task temp = new Task(name, desc, difc, rep, day, month, year);
 
         TaskList.addToList(temp);
         Intent i = new Intent(TaskCreator.this, TaskList.class);
