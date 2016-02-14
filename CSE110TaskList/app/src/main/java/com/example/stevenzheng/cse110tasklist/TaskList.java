@@ -18,7 +18,8 @@ import java.util.ArrayList;
 public class TaskList extends Activity {
 
     static ListView lv;
-    static ArrayList<String> list=  new ArrayList<String>();
+
+    static ArrayList<Task> list=  new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +31,37 @@ public class TaskList extends Activity {
 
         lv = (ListView) findViewById(R.id.taskList);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+        ArrayAdapter<Task> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,list);
         lv.setAdapter(adapter);
 
+        /*lv.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                String  itemValue    = (String) lv.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+        */
 
     }
 
-    public static void addToList( String task)
+    public static void addToList(Task task)
     {
         list.add(task);
         lv.invalidateViews();
-
-
-
     }
 
     public void onMembersClick(View v) {
