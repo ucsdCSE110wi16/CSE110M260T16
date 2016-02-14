@@ -32,10 +32,15 @@ public class TaskCreator extends Activity {
         CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
 
-
         String name = taskName.getText().toString();
         String desc  = taskDesc.getText().toString();
-        String difc = taskDifc.getText().toString();
+        int difc;
+        try {
+            difc = Integer.parseInt(taskDifc.getText().toString());
+        }
+        catch(Exception e) {
+            difc = 0;
+        }
         boolean rep = repetitive.isChecked();
         int day = endDate.getDayOfMonth();
         int month = endDate.getMonth();
@@ -50,5 +55,10 @@ public class TaskCreator extends Activity {
 
 
 
+    }
+
+    void diffOnClick(View v) {
+        TextView view = (TextView) v;
+        view.clearComposingText();
     }
 }

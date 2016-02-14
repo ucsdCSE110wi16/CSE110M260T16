@@ -19,4 +19,5 @@
     <string name="task_lists">Task Lists</string>
     <string name="create_new_list">Create New List</string>
     <string name="create_task_list">Create Task List</string>
+    <string name="title_activity_task_editor">TaskEditor</string>
 </resources>

@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.stevenzheng.cse110tasklist">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="com.parse.APPLICATION_ID"
@@ -35,20 +38,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SignIn"></activity>
-        <activity android:name=".SignUp"></activity>
+        <activity android:name=".SignIn" />
+        <activity android:name=".SignUp" />
         <activity
             android:name=".About"
             android:label="@string/action_about"
-            android:parentActivityName=".MainActivity" >
-        </activity>
-        <activity android:name=".MainMenu"></activity>
-        <activity android:name=".CreateGroup"></activity>
-        <activity android:name=".AddGroup"></activity>
-        <activity android:name=".TaskList"></activity>
-        <activity android:name=".TaskCreator"></activity>
-        <activity android:name=".Members"></activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".CreateGroup" />
+        <activity android:name=".AddGroup" />
+        <activity android:name=".TaskList" />
+        <activity android:name=".TaskCreator" />
+        <activity android:name=".TaskView" />
+        <activity android:name=".Members" />
+        <activity
+            android:name=".TaskEditor"
+            android:label="@string/title_activity_task_editor"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

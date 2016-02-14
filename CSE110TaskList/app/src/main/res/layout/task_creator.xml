@@ -17,13 +17,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/taskName"
         android:layout_gravity="center_horizontal"
-        android:text="taskName" />
+        android:hint="Task Name" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskDesc"
-        android:text="taskDesc"
+        android:hint="Task Description"
         android:clickable="true" />
 
     <EditText
@@ -32,7 +32,7 @@
         android:inputType="numberSigned"
         android:ems="10"
         android:id="@+id/taskDificulty"
-        android:text="taskDifficulty"
+        android:hint="Task Difficulty"
         android:clickable="true"
         android:editable="true" />
 
