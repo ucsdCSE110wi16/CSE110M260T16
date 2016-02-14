@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.not;
 // Turn all animation scales to off before running tests
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class SignInTest {
+public class SignUpTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -47,16 +47,22 @@ public class SignInTest {
         mActivity = mActivityRule.getActivity();
     }
 
-    // Given that I have an account
-    // When I enter my credentials and log in
-    // Then I should see a list of task lists
+    // Given that I don't have an account
+    // When I enter my credentials and create an account
+    // Then I should be a registered and should be able to successfully log in
     @Test
-    public void testSignIn() throws InterruptedException {
-        onView(withId(R.id.B_signInForm)).perform(click());
-        String fName = "a";
-        String testPass = "qwerty";
-        String testEmail = "ak@ak.com";
+    public void testSignUp() throws InterruptedException {
+        onView(withId(R.id.B_signUp)).perform(click());
+        String fName = "John";
+        String lName = "Smith";
+        String testPass = "password123";
+        // Note: Since accounts can only be created one with an email, to repeat
+        // this test change the email to something random
+        String testEmail = "test123@test.com";
 
+        // enter name
+        onView(withId(R.id.TextField_firstName)).perform(typeText(fName));
+        onView(withId(R.id.TextField_lastName)).perform(typeText(lName));
         // sign in with test credentials
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
         onView(withId(R.id.TextField_password)).perform(typeText(testPass));
@@ -64,7 +70,7 @@ public class SignInTest {
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
         // TODO: find non temporary solution to time delay
-        sleep(4000);
+        sleep(2000);
         onView(withId(R.id.Text_name)).check(matches(withText(fName)));
     }
 

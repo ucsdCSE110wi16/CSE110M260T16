@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.not;
 // Turn all animation scales to off before running tests
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class SignInTest {
+public class CreateListTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -47,13 +47,12 @@ public class SignInTest {
         mActivity = mActivityRule.getActivity();
     }
 
-    // Given that I have an account
-    // When I enter my credentials and log in
-    // Then I should see a list of task lists
-    @Test
-    public void testSignIn() throws InterruptedException {
+    // Given that I am logged in
+    // When I click Create Task List
+    // Then I should be in a screen allowing me to create lists
+   @Test
+   public void testCreateList() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
-        String fName = "a";
         String testPass = "qwerty";
         String testEmail = "ak@ak.com";
 
@@ -63,9 +62,13 @@ public class SignInTest {
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
+
+        String str = "Create Task List";
+        // click button to sign in
+        onView(withId(R.id.B_createNewList)).perform(click());
         // TODO: find non temporary solution to time delay
-        sleep(4000);
-        onView(withId(R.id.Text_name)).check(matches(withText(fName)));
+        sleep(2000);
+        onView(withId(R.id.textView3)).check(matches(withText(str)));
     }
 
 }
