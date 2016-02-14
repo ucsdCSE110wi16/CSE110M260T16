@@ -15,37 +15,42 @@
         android:layout_height="wrap_content"
         android:text="create task"
         android:id="@+id/submit"
-        android:onClick="buttonOnClick"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/groupName" />
+        android:onClick="buttonOnClick" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/taskList"
-        android:layout_below="@+id/groupName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/submit"
+        android:layout_alignRight="@+id/submit"
+        android:layout_alignEnd="@+id/submit" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/groupName"
-        android:text="Group Name"
-        android:layout_below="@+id/submit"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/submit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/submit"
+        android:layout_toLeftOf="@+id/submit"
+        android:layout_toStartOf="@+id/submit"
+        android:text="Group Name" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Members"
         android:id="@+id/B_Members"
-        android:onClick="onMembersClick"
-        android:layout_above="@+id/groupName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/submit"
+        android:layout_toStartOf="@+id/submit"
+        android:onClick="onMembersClick" />
 
 </RelativeLayout>
