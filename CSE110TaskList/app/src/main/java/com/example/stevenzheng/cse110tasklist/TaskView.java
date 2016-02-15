@@ -31,7 +31,8 @@ public class TaskView extends Activity {
         CheckBox repetitive = (CheckBox) findViewById(R.id.Repeated);
         repetitive.setChecked(task.rep);
         TextView endDate = (TextView) findViewById(R.id.Cal);
-        endDate.setText("Due: " + task.month+1 + "/" + task.day + "/" + task.year);
+        int month = task.month + 1;
+        endDate.setText("Due: " + month + "/" + task.day + "/" + task.year);
 
     }
 
