@@ -55,6 +55,8 @@
             android:name=".TaskEditor"
             android:label="@string/title_activity_task_editor"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".YourTaskList" />
     </application>
 
 </manifest>

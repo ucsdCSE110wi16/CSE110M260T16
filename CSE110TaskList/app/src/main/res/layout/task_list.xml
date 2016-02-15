@@ -62,4 +62,14 @@
         android:layout_toRightOf="@+id/groupName"
         android:layout_toEndOf="@+id/groupName" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Tasks"
+        android:id="@+id/B_yourTasks"
+        android:layout_below="@+id/submit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onYourTasksClick" />
+
 </RelativeLayout>

@@ -6,20 +6,114 @@ package com.example.stevenzheng.cse110tasklist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by User on 2/6/2016.
  */
 public class TaskCreator extends Activity {
 
+    ParseUser currentUser;
+    ListView membersList;
+    String assignedPerson;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_creator);
+
+
+        // Get ListView object from xml
+        membersList = (ListView) findViewById(R.id.List_members);
+
+        Log.d("before", "query");
+        // Get current group
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> objects, ParseException e) {
+                String groupName = MainMenu.groupName;
+                Log.d("after", groupName);
+                ParseObject group;
+                if (e == null) {
+                    Log.d("successful", "query");
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseObject currentGroup = objects.get(i);
+                        Log.d("name", currentGroup.getString("name"));
+                        if (currentGroup.getString("name").equals(groupName)) {
+                            Log.d("result", "equal");
+                            group = currentGroup;
+                            ArrayList<ParseUser> members = new ArrayList<ParseUser>();
+                            members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
+                            int numMembers = members.size();
+                            Log.d("numMembers", Integer.toString(numMembers));
+                            String[] memberNames = new String[numMembers];
+                            memberNames[0] = "Test Name";
+                            for (int x = 0; x < numMembers; x++) {
+                                try {
+                                    ParseUser currentMember = members.get(x);
+                                    String currentName = currentMember.fetchIfNeeded().getString("firstName") + " " + currentMember.fetchIfNeeded().getString("lastName");
+                                    memberNames[x] = currentName;
+                                } catch (com.parse.ParseException e1) {
+                                    e1.printStackTrace();
+                                }
+
+                            }
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Members.this,
+                                    android.R.layout.simple_list_item_1, android.R.id.text1, memberNames);
+                            membersList.setAdapter(adapter);
+
+                            membersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view,
+                                                        int position, long id) {
+
+                                    // ListView Clicked item index
+                                    int itemPosition  = position;
+
+                                    // ListView Clicked item value
+                                    String  itemValue    = (String) membersList.getItemAtPosition(position);
+
+                                    // Show Alert
+                                    Toast.makeText(getApplicationContext(),
+                                            "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
+                                            .show();
+                                    assignedPerson = itemValue;
+                                }
+
+                            });
+
+                        } else {
+                            Log.d("result", "not equal");
+                        }
+                    }
+
+
+                } else {
+                    Log.d("Unsuccessful", "query");
+
+                }
+            }
+        });
     }
 
 
@@ -49,6 +143,14 @@ public class TaskCreator extends Activity {
         Task temp = new Task(name, desc, difc, rep, day, month, year);
 
         TaskList.addToList(temp);
+
+        /* Parse stuff - sorry this is tangential to the task class (for now) - Steven */
+        ParseObject newTask =  new ParseObject("Task");
+        newTask.put("name", name);
+        newTask.put("personAssigned", assignedPerson);
+        newTask.saveInBackground();
+        /* Parse stuff - end, task has person right now... person should have task? */
+
         Intent i = new Intent(TaskCreator.this, TaskList.class);
         startActivity(i);
 

@@ -76,6 +76,11 @@ public class TaskList extends Activity {
         Intent i = new Intent(this, Members.class);
         startActivity(i);
     }
+
+    public void onYourTasksClick(View v) {
+        Intent i = new Intent(this, YourTaskList.class);
+        startActivity(i);
+    }
     public void buttonOnClick(View v)
     {
         Intent i = new Intent(TaskList.this, TaskCreator.class);
