@@ -1,8 +1,5 @@
 package com.example.stevenzheng.cse110tasklist;
 
-/**
- * Created by User on 2/6/2016.
- */
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,17 +8,15 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-/**
- * Created by User on 2/6/2016.
- */
-public class TaskCreator extends Activity {
-
+public class TaskEditor extends Activity {
+    int position;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_creator);
+        Intent i = getIntent();
+        position = i.getIntExtra("position", -1);
     }
-
 
     public void submitTask(View v)
     {
@@ -45,21 +40,15 @@ public class TaskCreator extends Activity {
         int day = endDate.getDayOfMonth();
         int month = endDate.getMonth();
         int year =  endDate.getYear();
-        
 
         Task temp = new Task(name, desc, difc, rep, day, month, year);
 
-        TaskList.addToList(temp);
-        Intent i = new Intent(TaskCreator.this, TaskList.class);
+        TaskList.editList(position, temp);
+
+        Intent i = new Intent(TaskEditor.this, TaskList.class);
         startActivity(i);
 
 
-
-
     }
 
-    void diffOnClick(View v) {
-        TextView view = (TextView) v;
-        view.clearComposingText();
-    }
 }
