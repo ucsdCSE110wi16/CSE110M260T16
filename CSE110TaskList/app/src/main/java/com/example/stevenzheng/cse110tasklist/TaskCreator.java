@@ -41,10 +41,10 @@ public class TaskCreator extends Activity {
 
 
         // Get ListView object from xml
-        membersList = (ListView) findViewById(R.id.List_members);
+        membersList = (ListView) findViewById(R.id.List_assignment);
 
         Log.d("before", "query");
-        // Get current group
+        // Get current members
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -77,7 +77,7 @@ public class TaskCreator extends Activity {
 
                             }
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Members.this,
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(TaskCreator.this,
                                     android.R.layout.simple_list_item_1, android.R.id.text1, memberNames);
                             membersList.setAdapter(adapter);
 

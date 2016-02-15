@@ -69,14 +69,14 @@ import java.util.List;
  */
 public class YourTaskList extends Activity {
     static ListView lv;
-    String[] taskNames = new String[100]; // 100 for now
+    ArrayList<String> taskNames = new ArrayList<>(0); // 100 for now
 
     ParseUser currentUser;
     boolean delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_list);
+        setContentView(R.layout.your_task_list);
 
         lv = (ListView) findViewById(R.id.List_yourTasks);
 
@@ -88,28 +88,30 @@ public class YourTaskList extends Activity {
             ParseQuery<ParseObject> query = ParseQuery.getQuery("Task");
             query.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> objects, ParseException e) {
-                    String name = currentUser.getString("firstName") + currentUser.getString("lastName");
+                    String name = currentUser.getString("firstName") + " " + currentUser.getString("lastName");
 
                     ParseObject task;
                     if (e == null) {
                         int numOfTasks = 0;
                         for (int i = 0; i < objects.size(); i++) {
                             ParseObject currentTask = objects.get(i);
-                            Log.d("name", currentTask.getString("name"));
-                            if (currentTask.getString("assignedPerson").equals(name)) {
+                            Log.d("name", currentTask.getString("personAssigned"));
+                            Log.d("person name", name);
+                            if (currentTask.getString("personAssigned").equals(name)) {
                                 Log.d("result", "equal");
-                                taskNames[numOfTasks] = currentTask.getString("name");
+                                taskNames.add(numOfTasks, currentTask.getString("name"));
                                 numOfTasks++;
 
-
-                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(YourTaskList.this,
-                                        android.R.layout.simple_list_item_1, android.R.id.text1, taskNames);
-                                lv.setAdapter(adapter);
 
                             } else {
                                 Log.d("result", "not equal");
                             }
                         }
+
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(YourTaskList.this,
+                                android.R.layout.simple_list_item_1, android.R.id.text1, taskNames);
+                        lv.setAdapter(adapter);
+
 
 
                     } else {
