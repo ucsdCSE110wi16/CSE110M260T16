@@ -57,6 +57,7 @@ Week 8:
 Enable randomization of task assignment
  - Design a fair randomization algorithm
  - Implement it as an option for task assignment
+ - make due dates for tasks
 
 
 Week 9:

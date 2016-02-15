@@ -41,6 +41,18 @@
  - Priority: 20
  - Time: 5 days
 
+Given that I have tasks assigned to me
+When I view my shared tasklist 
+Then I should see just the tasks I am assigned to
+When I click on "see all tasks" 
+Then I should see all the tasks in the tasklist
+
+- light blue background
+
+Given that tasks have a deadline
+When I view a task on the list
+Then I should be able to see the deadline next to it
+
 4. Enable randomization of task assignment
  - As a roommate
  - I want to be able to have tasks randomly assigned to all roommates
