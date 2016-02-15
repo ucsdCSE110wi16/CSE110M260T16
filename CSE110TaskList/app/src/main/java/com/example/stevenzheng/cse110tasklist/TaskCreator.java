@@ -139,6 +139,7 @@ public class TaskCreator extends Activity {
         int day = endDate.getDayOfMonth();
         int month = endDate.getMonth();
         int year =  endDate.getYear();
+        
 
         Task temp = new Task(name, desc, difc, rep, day, month, year);
 
