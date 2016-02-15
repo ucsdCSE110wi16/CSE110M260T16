@@ -38,10 +38,10 @@ Logging In and creating task lists (continued)
 Week 6:
 Create, view and assign tasks to members of the task list (continued)
 - Create an interface for viewing the members of a task list 
-- Add functionality to create a new task, delete, edit
+- Add functionality to create a new task
     - task can have name, description, (repeating... daily, weekly etc), initial assignment, difficulty/time
 - Create an interface for viewing the tasks within the task list
-- View your own tasks vs. view all tasks
+- View your own tasks vs. view all tasks, separate lists
 - Add functionality to assign a task to a member
 
 
@@ -50,7 +50,7 @@ Week 7:
 Handle task assignment and completion (assignment continued)
  - Allow users to complete tasks
  - Manage task assignment between users, drop assignment
- - Send notifications to users when task is assigned, completed
+ - Send notifications to users when task is assigned, completed (implement delete/edit tasks)
 
 
 Week 8:
