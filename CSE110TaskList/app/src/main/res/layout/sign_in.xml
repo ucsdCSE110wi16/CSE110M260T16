@@ -11,8 +11,9 @@
         android:ems="10"
         android:id="@+id/TextField_email"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
+        android:layout_alignLeft="@+id/TextField_password"
+        android:layout_alignStart="@+id/TextField_password"
+        android:layout_marginTop="110dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -20,17 +21,19 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/TextField_password"
+        android:hint="Password"
         android:layout_below="@+id/TextField_email"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:hint="Password" />
+        android:layout_marginTop="40dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
         android:id="@+id/B_signIn"
+        android:onClick="onButtonClick"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onButtonClick" />
+        android:background="@color/com_facebook_button_send_background_color_pressed"
+        android:textColor="@color/abc_background_cache_hint_selector_material_light" />
 </RelativeLayout>
