@@ -53,8 +53,8 @@ public class CreateListTest {
    @Test
    public void testCreateList() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
-        String testPass = "qwerty";
-        String testEmail = "ak@ak.com";
+        String testEmail = "cse@cse.com";
+        String testPass = "cse110";
 
         // sign in with test credentials
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
@@ -62,6 +62,8 @@ public class CreateListTest {
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
+
+        sleep(1000);
 
         String str = "Create Task List";
         // click button to sign in

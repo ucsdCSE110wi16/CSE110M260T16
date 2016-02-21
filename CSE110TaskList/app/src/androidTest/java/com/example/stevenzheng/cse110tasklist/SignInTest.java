@@ -54,8 +54,8 @@ public class SignInTest {
     public void testSignIn() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
         String fName = "a";
-        String testPass = "qwerty";
-        String testEmail = "ak@ak.com";
+        String testEmail = "cse@cse.com";
+        String testPass = "cse110";
 
         // sign in with test credentials
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
