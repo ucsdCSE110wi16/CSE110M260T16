@@ -69,7 +69,7 @@ import java.util.List;
  */
 public class YourTaskList extends Activity {
     static ListView lv;
-    ArrayList<String> taskNames = new ArrayList<>(0); // 100 for now
+    ArrayList<String> taskNames = new ArrayList<>(0);
 
     ParseUser currentUser;
     boolean delete;
@@ -95,8 +95,8 @@ public class YourTaskList extends Activity {
                         int numOfTasks = 0;
                         for (int i = 0; i < objects.size(); i++) {
                             ParseObject currentTask = objects.get(i);
-                            Log.d("name", currentTask.getString("personAssigned"));
-                            Log.d("person name", name);
+                            //Log.d("name", currentTask.getString("personAssigned"));
+                            //Log.d("person name", name);
                             if (currentTask.getString("personAssigned").equals(name)) {
                                 Log.d("result", "equal");
                                 taskNames.add(numOfTasks, currentTask.getString("name"));

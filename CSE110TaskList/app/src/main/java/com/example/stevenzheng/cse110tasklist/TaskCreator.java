@@ -32,7 +32,7 @@ public class TaskCreator extends Activity {
 
     ParseUser currentUser;
     ListView membersList;
-    String assignedPerson;
+    String assignedPerson = "";
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -141,19 +141,21 @@ public class TaskCreator extends Activity {
         int year =  endDate.getYear();
         
 
-        Task temp = new Task(name, desc, difc, rep, day, month, year);
+        Task temp = new Task(name, desc, difc, rep, day, month, year, assignedPerson, MainMenu.groupName);
 
-        TaskList.addToList(temp);
+        TaskList.list = new ArrayList<>();
 
-        /* Parse stuff - sorry this is tangential to the task class (for now) - Steven */
-        ParseObject newTask =  new ParseObject("Task");
-        newTask.put("name", name);
-        newTask.put("personAssigned", assignedPerson);
+        ParseObject newTask =  temp.getParseTask();
         newTask.saveInBackground();
-        /* Parse stuff - end, task has person right now... person should have task? */
+
 
         Intent i = new Intent(TaskCreator.this, TaskList.class);
         startActivity(i);
+
+        /*
+        // Refresh task list and finish
+        setResult(RESULT_OK, null);
+        finish();*/
 
 
 

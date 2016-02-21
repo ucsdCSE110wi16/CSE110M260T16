@@ -27,6 +27,12 @@ public class TaskEditor extends Activity {
         CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
 
+        /* MAKE A LIST OF GROUP MEMBERS HERE, pretty much identical to what I made for CreateGroup.
+         * When you click on the person's name, it will assign the task to that person, overriding any previous assignment
+         * Again, refer to CreateGroup
+         */
+
+
         String name = taskName.getText().toString();
         String desc  = taskDesc.getText().toString();
         int difc;
@@ -41,9 +47,34 @@ public class TaskEditor extends Activity {
         int month = endDate.getMonth();
         int year =  endDate.getYear();
 
-        Task temp = new Task(name, desc, difc, rep, day, month, year);
+        /*
+         * Right now, I've commented out the task object because I changed the Task class
+         * Also we're no longer editing the list directly, so I've commented it out, though you
+         * might still want to use the editList function depending on how you implement it
+         *
+         * What we did in create task is that we no longer added the task to the list using addToList
+         * - we create the parse object from the task object (Task object -> Parse object)
+         * - we save the object in parse
+         * - when we go to the TaskList activity, it refreshes the list of tasks, searching Parse for all the
+         *   tasks that belong to the group... every time it finds a task that belongs, it creates a Task object which is then
+         *   added to the list (Parse Object -> Task Object)... I did this so your code, John, would still work, but not completely which
+         *   is where you come in now
+         *
+         * What you should do is
+         * - figure out how to retrieve the correct Parse Object using the information of this Task Object (parse query)
+         * - Edit and save the actual parse object (for backend)
+         * - Make sure TaskList reloads with the changed data
+         * - Add a list to select the person to do the task... refer to CreateGroup
+         *
+         * Design change that I just want to make clear again - we're no longer creating/editing tasks directly,
+         *   We are creating/editing parseobjects and saving them
+         *   TaskList will reload all objects saved in parse and convert those objects into tasks to display everytime it loads
+         */
 
-        TaskList.editList(position, temp);
+
+        /*Task temp = new Task(name, desc, difc, rep, day, month, year, assignedPerson);
+
+        //TaskList.editList(position, temp);*/
 
         Intent i = new Intent(TaskEditor.this, TaskList.class);
         startActivity(i);

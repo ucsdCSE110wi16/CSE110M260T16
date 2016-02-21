@@ -34,6 +34,10 @@ public class TaskView extends Activity {
         int month = task.month + 1;
         endDate.setText("Due: " + month + "/" + task.day + "/" + task.year);
 
+        // John, I added this so you can see who is assigned the task when you view it - Steven
+        TextView assignedPerson = (TextView) findViewById(R.id.AssignedPerson);
+        assignedPerson.setText("Assigned person: " + task.personAssigned);
+
     }
 
 
