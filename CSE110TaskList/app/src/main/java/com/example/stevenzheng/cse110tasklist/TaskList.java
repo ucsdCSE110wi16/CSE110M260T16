@@ -38,7 +38,9 @@ public class TaskList extends Activity {
         TextView name = (TextView) findViewById(R.id.groupName);
         name.setText(MainMenu.groupName);
 
-
+        // reset list
+        list = new ArrayList<>();
+        
         lv = (ListView) findViewById(R.id.taskList);
         /*
         final ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
