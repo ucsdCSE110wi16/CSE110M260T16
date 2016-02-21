@@ -47,8 +47,6 @@ public class Task {
         parseTask.put("personAssigned", personAssigned);
         parseTask.put("group", group);
 
-        //parseTask.saveInBackground();
-
         return parseTask;
     }
 

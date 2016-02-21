@@ -32,7 +32,7 @@ public class TaskCreator extends Activity {
 
     ParseUser currentUser;
     ListView membersList;
-    String assignedPerson = "";
+    String assignedPerson = ""; // name of person assigned to do the task, if not set it will be empty string
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,9 +43,10 @@ public class TaskCreator extends Activity {
         // Get ListView object from xml
         membersList = (ListView) findViewById(R.id.List_assignment);
 
-        Log.d("before", "query");
-        // Get current members
 
+        // Get current members
+        // Populates the list with all the members of the group
+        // When a list item is clicked, it will update assignedPerson with the value of the list item
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
@@ -143,23 +144,16 @@ public class TaskCreator extends Activity {
 
         Task temp = new Task(name, desc, difc, rep, day, month, year, assignedPerson, MainMenu.groupName);
 
+        // Reset the list so we can repopulate it with the new task
         TaskList.list = new ArrayList<>();
 
+        // Create and save the task in parse
         ParseObject newTask =  temp.getParseTask();
         newTask.saveInBackground();
 
 
         Intent i = new Intent(TaskCreator.this, TaskList.class);
         startActivity(i);
-
-        /*
-        // Refresh task list and finish
-        setResult(RESULT_OK, null);
-        finish();*/
-
-
-
-
     }
 
     void diffOnClick(View v) {
