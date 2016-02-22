@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
+
 public class TaskView extends Activity {
     Task task;
     int position;
@@ -52,4 +59,57 @@ public class TaskView extends Activity {
 
         startActivity(i);
     }
+
+    public void delete(View v) {
+        ParseQuery query = new ParseQuery("Task");
+        query.whereEqualTo("difc", task.difc);
+        query.whereEqualTo("desc", task.desc);
+        query.whereEqualTo("day", task.day);
+        query.whereEqualTo("year", task.year);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> testList, ParseException e) {
+                if (e == null) {
+                    Log.d("name = ", task.name);
+                    Log.d("score", "Retrieved " + testList.size() + " test objects");
+                    for (int i = 0; i < testList.size(); i++) {
+                        ParseObject tempTest = testList.get(i);
+                        tempTest.deleteInBackground();
+                    }
+                    Log.d("delete", task.name + "was deleted");
+                    Intent i = new Intent(TaskView.this, TaskList.class);
+                    startActivity(i);
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    public void completed(View v)
+    {
+        ParseQuery query = new ParseQuery("Task");
+        query.whereEqualTo("difc", task.difc );
+        query.whereEqualTo("desc", task.desc );
+        query.whereEqualTo("day", task.day );
+        query.whereEqualTo("year", task.year );
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> testList, ParseException e) {
+                if (e == null) {
+                    Log.d("name = ", task.name);
+                    Log.d("score", "Retrieved " + testList.size() + " test objects");
+                    for (int i = 0; i < testList.size(); i++) {
+                        ParseObject tempTest = testList.get(i);
+                        tempTest.deleteInBackground();
+                    }
+                    Log.d("completed",task.name + "was completed");
+                    Intent i = new Intent(TaskView.this, TaskList.class);
+                    startActivity(i);
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+
+    }
+
 }
