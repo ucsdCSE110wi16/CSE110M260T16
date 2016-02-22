@@ -44,27 +44,27 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         info = (TextView) findViewById(R.id.info);
-        loginButton = (LoginButton)findViewById(R.id.login_button);
-
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                info.setText(
-                        "User ID: " + loginResult.getAccessToken().getUserId() + "\n" +
-                                "Auth Token: " + loginResult.getAccessToken().getToken()
-                );
-            }
-
-            @Override
-            public void onCancel() {
-                info.setText("Login attempt canceled.");
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-                info.setText("Login attempt failed.");
-            }
-        });
+//        loginButton = (LoginButton)findViewById(R.id.login_button);
+//
+//        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                info.setText(
+//                        "User ID: " + loginResult.getAccessToken().getUserId() + "\n" +
+//                                "Auth Token: " + loginResult.getAccessToken().getToken()
+//                );
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                info.setText("Login attempt canceled.");
+//            }
+//
+//            @Override
+//            public void onError(FacebookException e) {
+//                info.setText("Login attempt failed.");
+//            }
+//        });
 
         //Removing toolbar at the top
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
