@@ -38,7 +38,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignIn" />
+        <activity android:name=".SignIn"
+            android:theme="@style/AppTheme.Dark"
+            />
         <activity android:name=".SignUp" />
         <activity
             android:name=".About"
@@ -57,6 +59,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity android:name=".YourTaskList" />
+
     </application>
 
 </manifest>
