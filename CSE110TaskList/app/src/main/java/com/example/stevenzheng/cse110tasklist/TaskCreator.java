@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class TaskCreator extends Activity {
 
     ParseUser currentUser;
     ListView membersList;
+    TextView lastClicked;
     String assignedPerson = ""; // name of person assigned to do the task, if not set it will be empty string
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class TaskCreator extends Activity {
 
         // Get ListView object from xml
         membersList = (ListView) findViewById(R.id.List_assignment);
+        lastClicked = (TextView) findViewById(R.id.lastClick);
 
 
         // Get current members
@@ -99,6 +102,8 @@ public class TaskCreator extends Activity {
                                             "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                                             .show();
                                     assignedPerson = itemValue;
+                                    lastClicked.setText(assignedPerson);
+
                                 }
 
                             });

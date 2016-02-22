@@ -26,6 +26,7 @@ public class TaskEditor extends Activity {
 
     ListView membersList;
     String assignedPerson = "";
+    TextView lastClicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class TaskEditor extends Activity {
 
         //Need to be able to see member that clicked on editor, will be added shortly
         membersList = (ListView) findViewById(R.id.List_assignment);
+        lastClicked = (TextView) findViewById(R.id.lastClick);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -82,6 +84,7 @@ public class TaskEditor extends Activity {
                                             "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                                             .show();
                                     assignedPerson = itemValue;
+                                    lastClicked.setText(assignedPerson);
                                 }
                             });
 

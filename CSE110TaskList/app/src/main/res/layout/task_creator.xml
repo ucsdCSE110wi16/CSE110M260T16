@@ -19,6 +19,12 @@
         android:layout_gravity="center_horizontal"
         android:hint="Task Name" />
 
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"
+        android:id = "@+id/lastClick"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,7 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/List_assignment"
-        android:layout_gravity="center_horizontal"
         android:choiceMode="singleChoice" />
 
 </LinearLayout>
