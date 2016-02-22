@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.stevenzheng.cse110tasklist.MainActivity"
-    tools:showIn="@layout/activity_main">
+    android:background="#FFFFFF">
 
     <Button
         android:layout_width="@dimen/design_tab_max_width"
@@ -18,10 +18,13 @@
         android:text="@string/sign_in"
         android:id="@+id/B_signInForm"
         android:onClick="onButtonClick"
+        android:layout_marginBottom="31dp"
+        android:background="#007ee5"
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="125dp"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="@dimen/design_tab_max_width"
@@ -29,24 +32,54 @@
         android:text="@string/sign_up"
         android:id="@+id/B_signUp"
         android:onClick="onButtonClick"
+        android:background="#007ee5"
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_above="@+id/B_signInForm"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/B_signUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
         android:id="@+id/info"
-        android:layout_below="@+id/login_button"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="110dp" />
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Managing tasks just become easier!"
+        android:id="@+id/textView"
+        android:textColor="#007ee5"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:background="@drawable/tryfinal"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/textView"
+        android:layout_alignLeft="@+id/B_signUp"
+        android:layout_alignStart="@+id/B_signUp"
+        android:layout_alignRight="@+id/login_button"
+        android:layout_alignEnd="@+id/login_button"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="-20dp" />
 
 </RelativeLayout>

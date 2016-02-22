@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:hint="Email"
@@ -13,10 +14,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/TextField_password"
         android:layout_alignStart="@+id/TextField_password"
-        android:layout_marginTop="110dp" />
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="#007EE5" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
@@ -24,16 +27,36 @@
         android:hint="Password"
         android:layout_below="@+id/TextField_email"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="#007EE5"
+        android:typeface="normal" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:text="Sign In"
         android:id="@+id/B_signIn"
         android:onClick="onButtonClick"
-        android:layout_centerVertical="true"
+        android:background="#007EE5"
+        android:textColor="#ffffff"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/TextField_password"
         android:layout_centerHorizontal="true"
-        android:background="@color/com_facebook_button_send_background_color_pressed"
-        android:textColor="@color/abc_background_cache_hint_selector_material_light" />
+        android:layout_marginBottom="30dp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome Back!"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:transitionName="@string/abc_capital_off"
+        android:typeface="sans"
+        android:textColor="#007EE5"
+        android:color="#007EE5"/>
 </RelativeLayout>
