@@ -53,6 +53,28 @@ Given that tasks have a deadline
 When I view a task on the list
 Then I should be able to see the deadline next to it
 
+
+
+Given that I have a task assigned to me
+When I click on that task in the list
+Then I should be able to view the details of that task
+
+Given that I delete a task
+When I go back to the task list page
+Then I should not see the task I just deleted
+
+Given that I edit a task
+When I click the task again
+Then I should see the updated version
+
+Given that I assign a task to my friend
+When my friend view his/her tasks
+Then they should see the task that I assigned to them
+
+Given that I have a task assigned to me
+When I don't complete the task by the deadline
+Then I will get notified
+
 4. Enable randomization of task assignment
  - As a roommate
  - I want to be able to have tasks randomly assigned to all roommates
