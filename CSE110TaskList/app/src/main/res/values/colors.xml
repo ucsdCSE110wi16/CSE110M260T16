@@ -2,16 +2,8 @@
 <resources>
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#00796B</color>
-<<<<<<< HEAD
     <color name="colorAccent">#90caf9</color>
-=======
-    <color name="colorAccent">#448AFF</color>
-
-        <color name="primary">#E43F3F</color>
-        <color name="primary_dark">#E12929</color>
-        <color name="primary_darker">#CC1D1D</color>
         <color name="accent">#FFFFFF</color>
-
         <color name="black">#000000</color>
         <color name="jet">#222222</color>
         <color name="oil">#333333</color>
@@ -21,5 +13,4 @@
         <color name="base">#AAAAAA</color>
         <color name="iron">#CCCCCC</color>
         <color name="white">#FFFFFF</color>
->>>>>>> origin/master
 </resources>
