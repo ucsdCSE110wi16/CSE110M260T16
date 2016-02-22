@@ -12,35 +12,25 @@
     tools:context="com.example.stevenzheng.cse110tasklist.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/main_name"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp" />
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:id="@+id/B_signInForm"
         android:onClick="onButtonClick"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/B_signUp"
-        android:layout_marginTop="115dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="125dp"
+        android:layout_marginTop="15dp" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:id="@+id/B_signUp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/B_signInForm"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:layout_above="@+id/B_signInForm"
+        android:layout_centerHorizontal="true" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -48,10 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/B_signUp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
