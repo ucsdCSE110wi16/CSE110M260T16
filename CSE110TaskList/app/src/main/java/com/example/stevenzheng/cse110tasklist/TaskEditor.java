@@ -23,15 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskEditor extends Activity {
-    int position;
+
     ListView membersList;
     String assignedPerson = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_creator);
-        Intent i = getIntent();
-        position = i.getIntExtra("position", -1);
 
 
         membersList = (ListView) findViewById(R.id.List_assignment);
@@ -101,6 +99,8 @@ public class TaskEditor extends Activity {
 
     public void submitTask(View v)
     {
+        Intent i = getIntent();
+        final String subjName = i.getStringExtra("name");
 
         TextView taskName = (TextView) findViewById(R.id.taskName);
         TextView taskDesc = (TextView) findViewById(R.id.taskDesc);
@@ -144,9 +144,10 @@ public class TaskEditor extends Activity {
                     int numOfTasks = 0;
                     for (int i = 0; i < objects.size(); i++) {
                         ParseObject currentTask = objects.get(i);
+                        Log.d("name", currentTask.getString("name"));
                         //Log.d("name", currentTask.getString("personAssigned"));
                         //Log.d("person name", name);
-                        if (currentTask.getString("group").equals(groupName)) {
+                        if (currentTask.getString("name").equals(subjName)) {
                             Log.d("result", "equal");
                             currentTask.put("name", name);
                             currentTask.put("desc", desc);
@@ -200,8 +201,8 @@ public class TaskEditor extends Activity {
 
         //TaskList.editList(position, temp);*/
 
-        Intent i = new Intent(TaskEditor.this, TaskList.class);
-        startActivity(i);
+        Intent i1 = new Intent(TaskEditor.this, TaskList.class);
+        startActivity(i1);
 
             }
 

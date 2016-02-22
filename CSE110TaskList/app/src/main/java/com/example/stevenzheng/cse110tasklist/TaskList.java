@@ -120,6 +120,8 @@ public class TaskList extends Activity {
                             } else {
                                 Intent i = new Intent(TaskList.this, TaskView.class);
                                 Log.d("position", Integer.toString(position));
+                                Log.d("name", taskNames.get(position));
+                                i.putExtra("name", taskNames.get(position));
                                 i.putExtra("position", position);
                                 startActivity(i);
                             }

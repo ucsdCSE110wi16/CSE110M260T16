@@ -6,6 +6,7 @@ package com.example.stevenzheng.cse110tasklist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -43,8 +44,12 @@ public class TaskView extends Activity {
 
     public void editButton(View v)
     {
+        Intent w = this.getIntent();
         Intent i = new Intent(TaskView.this, TaskEditor.class);
         i.putExtra("position", position);
+        Log.d("thisname", w.getStringExtra("name"));
+        i.putExtra("name", w.getStringExtra("name"));
+
         startActivity(i);
     }
 }
