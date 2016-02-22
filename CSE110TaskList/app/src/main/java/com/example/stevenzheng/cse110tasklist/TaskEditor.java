@@ -31,7 +31,7 @@ public class TaskEditor extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_creator);
 
-
+        //Need to be able to see member that clicked on editor, will be added shortly
         membersList = (ListView) findViewById(R.id.List_assignment);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
