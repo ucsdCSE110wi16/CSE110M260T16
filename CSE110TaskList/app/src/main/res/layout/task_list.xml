@@ -22,23 +22,15 @@
         android:layout_toLeftOf="@+id/list_delete"
         android:layout_toStartOf="@+id/list_delete" />
 
-    <ListView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/taskList"
-        android:layout_below="@+id/submit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/groupName"
-        android:text="Group Name"
-        android:layout_below="@+id/submit"
-        android:layout_centerHorizontal="true" />
+        android:text="Delete Task"
+        android:onClick="onDeleteClick"
+        android:id="@+id/list_delete"
+        android:layout_alignTop="@+id/submit"
+        android:layout_toRightOf="@+id/groupName"
+        android:layout_toEndOf="@+id/groupName" />
 
     <Button
         android:layout_width="wrap_content"
@@ -55,16 +47,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Task"
-        android:onClick="onDeleteClick"
-        android:id="@+id/list_delete"
-        android:layout_alignTop="@+id/submit"
-        android:layout_toRightOf="@+id/groupName"
-        android:layout_toEndOf="@+id/groupName" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Your Tasks"
         android:id="@+id/B_yourTasks"
         android:layout_below="@+id/submit"
@@ -72,4 +54,21 @@
         android:layout_alignParentStart="true"
         android:onClick="onYourTasksClick" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/groupName"
+        android:text="Group Name"
+        android:layout_below="@+id/submit"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskList"
+        android:layout_below="@+id/submit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="44dp" />
 </RelativeLayout>

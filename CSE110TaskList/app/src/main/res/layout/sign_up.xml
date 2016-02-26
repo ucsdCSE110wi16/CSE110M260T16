@@ -3,7 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp">
+
+    <ImageView android:src="@drawable/logo"
+            android:id="@+id/sign_up_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/passwordInput2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/sign_up_logo"
+            android:textColorPrimary="@color/iron"
+            android:textColorHint="@color/iron"
+            >
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/TextField_firstName"
+                android:hint="First Name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp" />
+        </android.support.design.widget.TextInputLayout>
+
+<!--     <EditText
         android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -14,9 +50,31 @@
         android:layout_below="@+id/textView5"
         android:layout_alignLeft="@+id/TextField_lastName"
         android:layout_alignStart="@+id/TextField_lastName"
-        android:textColor="#007EE5" />
+        android:textColor="#007EE5" /> -->
 
-    <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/TextField_lastName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_below="@+id/TextField_firstName2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColorPrimary="@color/iron"
+            android:textColorHint="@color/iron"
+            >
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/TextField_lastName"
+                android:hint="Last Name"
+                android:layout_below="@+id/TextField_firstName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp" />
+        </android.support.design.widget.TextInputLayout>
+
+<!--     <EditText
         android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -27,8 +85,8 @@
         android:layout_alignLeft="@+id/TextField_password"
         android:layout_alignStart="@+id/TextField_password"
         android:layout_marginTop="25dp" />
-
-    <EditText
+ -->
+<!--     <EditText
         android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -38,9 +96,55 @@
         android:layout_below="@+id/TextField_lastName"
         android:layout_alignLeft="@+id/TextField_email"
         android:layout_alignStart="@+id/TextField_email"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp" /> -->
 
-    <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_below="@+id/TextField_lastName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColorPrimary="@color/iron"
+            android:textColorHint="@color/iron"
+            >
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/TextField_password"
+                android:hint="Password"
+                android:layout_below="@+id/TextField_lastName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_below="@+id/passwordInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColorPrimary="@color/iron"
+            android:textColorHint="@color/iron"
+            >
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/TextField_email_signup"
+                android:hint="Email Address"
+                android:layout_below="@+id/TextField_password"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp" />
+        </android.support.design.widget.TextInputLayout>
+
+<!--     <EditText
         android:layout_width="@dimen/design_tab_max_width"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
@@ -49,23 +153,38 @@
         android:hint="Email Address"
         android:layout_below="@+id/TextField_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="25dp" /> -->
 
-    <Button
-        android:layout_width="@dimen/design_tab_max_width"
-        android:layout_height="wrap_content"
+    <!-- <Button
+        android:background="#007EE5"
         android:hint="Done"
         android:id="@+id/B_done"
-        android:onClick="onButtonClick"
         android:layout_below="@+id/TextField_email"
         android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="#007EE5"
-        android:textColor="#ffffff"
+        android:layout_width="@dimen/design_tab_max_width"
+        android:onClick="onButtonClick"
         android:text="DONE"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"
+    /> -->
 
-    <TextView
+    <android.support.v7.widget.AppCompatButton
+        android:hint="Done"
+        android:id="@+id/B_done"
+        android:layout_below="@+id/emailInput"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:onClick="onButtonClick"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:text="Sign Up"
+        />
+
+<!--     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -74,6 +193,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:textColor="#007EE5" />
+        android:textColor="#007EE5" /> -->
+
+    </LinearLayout>
 
 </RelativeLayout>

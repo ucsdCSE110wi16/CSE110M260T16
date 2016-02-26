@@ -69,7 +69,7 @@ public class SignUp extends Activity {
             textField = (EditText)findViewById(R.id.TextField_lastName);
             lastName = textField.getText().toString();
 
-            textField = (EditText)findViewById(R.id.TextField_email);
+            textField = (EditText)findViewById(R.id.TextField_email_signup);
             email = textField.getText().toString();
             username = email;
 

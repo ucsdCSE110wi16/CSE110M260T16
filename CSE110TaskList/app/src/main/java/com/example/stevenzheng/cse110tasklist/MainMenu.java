@@ -3,6 +3,7 @@ package com.example.stevenzheng.cse110tasklist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.parse.ParseException;
@@ -37,6 +38,14 @@ public class MainMenu extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+
+        // FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab_main);
+        // FAB.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //     public void onClick(View v) {
+        //         Toast.makeText(MainMenu.this, "Would you like a coffee?", Toast.LENGTH_SHORT).show();
+        //     }
+        // });
 
         // Get ListView object from xml
         groupsList = (ListView)findViewById(R.id.List_groups);

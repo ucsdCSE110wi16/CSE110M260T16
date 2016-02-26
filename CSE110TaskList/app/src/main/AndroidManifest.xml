@@ -38,10 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignIn"
-            android:theme="@style/AppTheme.Dark"
-            />
-        <activity android:name=".SignUp" />
+        <activity android:name=".SignIn" android:theme="@style/AppTheme.Dark"/>
+        <activity android:name=".SignUp" android:theme="@style/AppTheme.Dark"/>
         <activity
             android:name=".About"
             android:label="@string/action_about"
@@ -52,7 +50,7 @@
         <activity android:name=".TaskList" />
         <activity android:name=".TaskCreator" />
         <activity android:name=".TaskView" />
-        <activity android:name=".Members" />
+        <activity android:name=".Members" android:theme="@style/AppTheme.Dark"/>
         <activity
             android:name=".TaskEditor"
             android:label="@string/title_activity_task_editor"
