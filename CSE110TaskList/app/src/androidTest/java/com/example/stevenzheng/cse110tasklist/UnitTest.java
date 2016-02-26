@@ -14,23 +14,31 @@ import static org.junit.Assert.assertTrue;
  */
 public class UnitTest {
 
+    private String badPassword;
+    private String goodPassword;
+    private String badEmail;
+    private String goodEmail;
+
     @Before
     public void setActivity() {}
 
+    @Before
+    public void initValidString() {
+        // Specify a valid string.
+        badPassword = "short";
+        goodPassword = "thispasswordislong";
+        badEmail = "bad.e@mail";
+        goodEmail = "email@example.com";
+    }
+
     @Test
     public void testValidPassword() throws InterruptedException {
-        String badPassword  = "short";
-        String goodPassword = "thispasswordislong";
-
         assertThat(isBadPassword(badPassword), is(true));
         assertThat(isBadPassword(goodPassword), is(false));
     }
 
     @Test
     public void testValidEmail() throws InterruptedException {
-        String badEmail  = "bad.e@mail";
-        String goodEmail = "email@example.com";
-
         assertThat(isBadEmail(badEmail), is(true));
         assertThat(isBadEmail(goodEmail), is(false));
     }

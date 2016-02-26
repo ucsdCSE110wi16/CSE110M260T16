@@ -1,5 +1,7 @@
 package com.example.stevenzheng.cse110tasklist;
 
+import android.content.ComponentName;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -10,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.InstrumentationRegistry.getTargetContext;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -18,11 +21,13 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
+import static com.example.stevenzheng.cse110tasklist.R.id.B_signIn;
 import static java.lang.Thread.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
@@ -59,12 +64,13 @@ public class SignInTest {
 
         // sign in with test credentials
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
-        onView(withId(R.id.TextField_password)).perform(typeText(testPass));
+        onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
-        onView(withId(R.id.B_signIn)).perform(click());
+        onView(withId(B_signIn)).perform(click());
         // TODO: find non temporary solution to time delay
         sleep(4000);
+
         onView(withId(R.id.Text_name)).check(matches(withText(fName)));
     }
 
