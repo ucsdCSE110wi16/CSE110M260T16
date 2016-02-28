@@ -94,6 +94,10 @@ public class SignUp extends Activity {
             newUser.put("firstName", firstName);
             newUser.put("lastName", lastName);
 
+            // Set initial total difficulty of owned tasks for new user
+            int difc = 0;
+            newUser.put("totalDifficulty", difc);
+
             // New user has empty array of groups
             ArrayList<ParseObject> groups = new ArrayList<ParseObject>();
             newUser.put("groupsList", groups);

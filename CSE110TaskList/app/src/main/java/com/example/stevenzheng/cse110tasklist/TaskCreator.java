@@ -35,6 +35,7 @@ public class TaskCreator extends Activity {
     ListView membersList;
     TextView lastClicked;
     String assignedPerson = ""; // name of person assigned to do the task, if not set it will be empty string
+    int difc;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,20 +55,15 @@ public class TaskCreator extends Activity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 String groupName = MainMenu.groupName;
-                Log.d("after", groupName);
                 ParseObject group;
                 if (e == null) {
-                    Log.d("successful", "query");
                     for (int i = 0; i < objects.size(); i++) {
                         ParseObject currentGroup = objects.get(i);
-                        Log.d("name", currentGroup.getString("name"));
                         if (currentGroup.getString("name").equals(groupName)) {
-                            Log.d("result", "equal");
                             group = currentGroup;
                             ArrayList<ParseUser> members = new ArrayList<ParseUser>();
                             members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
                             int numMembers = members.size();
-                            Log.d("numMembers", Integer.toString(numMembers));
                             String[] memberNames = new String[numMembers];
                             memberNames[0] = "Test Name";
                             for (int x = 0; x < numMembers; x++) {
@@ -134,7 +130,7 @@ public class TaskCreator extends Activity {
 
         String name = taskName.getText().toString();
         String desc  = taskDesc.getText().toString();
-        int difc;
+        difc = 0;
         try {
             difc = Integer.parseInt(taskDifc.getText().toString());
         }
@@ -155,6 +151,31 @@ public class TaskCreator extends Activity {
         // Create and save the task in parse
         ParseObject newTask =  temp.getParseTask();
         newTask.saveInBackground();
+
+        if (assignedPerson != "") {
+            // Update user's total difficulty
+            ParseQuery<ParseUser> query = ParseUser.getQuery();
+            String[] names = assignedPerson.split(" ");
+            query.whereEqualTo("firstName", names[0]);
+            query.whereEqualTo("lastName", names[1]);
+            query.findInBackground(new FindCallback<ParseUser>() {
+                public void done(List<ParseUser> objects, ParseException e) {
+                    if (e == null) {
+                        // The query was successful.
+                        for (int i = 0; i < objects.size(); i++) {
+                            ParseUser user;
+                            user = objects.get(i);
+                            int currentTotalDifficulty = user.getInt("totalDifficulty");
+                            int newTotalDifficulty = currentTotalDifficulty + difc;
+                            user.put("totalDifficulty", newTotalDifficulty);
+                            user.saveInBackground();
+                        }
+                    } else {
+                        // Something went wrong.
+                    }
+                }
+            });
+        }
 
 
         Intent i = new Intent(TaskCreator.this, TaskList.class);

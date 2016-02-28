@@ -161,6 +161,29 @@ public class TaskEditor extends Activity {
                             currentTask.put("year", year);
                             currentTask.put("personAssigned", assignedPerson);
                             currentTask.saveInBackground();
+                            /*
+                            // Update user's total difficulty
+                            ParseQuery<ParseUser> query = ParseUser.getQuery();
+                            String[] names = assignedPerson.split(" ");
+                            query.whereEqualTo("firstName", names[0]);
+                            query.whereEqualTo("lastName", names[1]);
+                            query.findInBackground(new FindCallback<ParseUser>() {
+                                public void done(List<ParseUser> objects, ParseException e) {
+                                    if (e == null) {
+                                        // The query was successful.
+                                        for (int i = 0; i < objects.size(); i++) {
+                                            ParseUser user;
+                                            user = objects.get(i);
+                                            int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                            int newTotalDifficulty = currentTotalDifficulty + difc;
+                                            user.put("totalDifficulty", newTotalDifficulty);
+                                            user.saveInBackground();
+                                        }
+                                    } else {
+                                        // Something went wrong.
+                                    }
+                                }
+                            });*/
                         }
                         else {
                             Log.d("result", "not equal");

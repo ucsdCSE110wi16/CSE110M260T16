@@ -15,12 +15,15 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
 public class TaskView extends Activity {
     Task task;
     int position;
+
+    int difc;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -69,6 +72,36 @@ public class TaskView extends Activity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> testList, ParseException e) {
                 if (e == null) {
+
+                    String assignedPerson;
+                    for (int i = 0; i < testList.size(); i++) {
+                        if (testList.get(i).getString("personAssigned") != "") {
+                            assignedPerson = testList.get(i).getString("personAssigned");
+                            difc = testList.get(i).getInt("difc");
+                            // Update user's total difficulty
+                            ParseQuery<ParseUser> query = ParseUser.getQuery();
+                            String[] names = assignedPerson.split(" ");
+                            query.whereEqualTo("firstName", names[0]);
+                            query.whereEqualTo("lastName", names[1]);
+                            query.findInBackground(new FindCallback<ParseUser>() {
+                                public void done(List<ParseUser> objects, ParseException e) {
+                                    if (e == null) {
+                                        // The query was successful.
+                                        for (int i = 0; i < objects.size(); i++) {
+                                            ParseUser user = objects.get(i);
+                                            int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                            int newTotalDifficulty = currentTotalDifficulty - difc;
+                                            user.put("totalDifficulty", newTotalDifficulty);
+                                            user.saveInBackground();
+                                        }
+                                    } else {
+                                        // Something went wrong.
+                                    }
+                                }
+                            });
+                        }
+                    }
+
                     Log.d("name = ", task.name);
                     Log.d("score", "Retrieved " + testList.size() + " test objects");
                     for (int i = 0; i < testList.size(); i++) {
@@ -95,6 +128,37 @@ public class TaskView extends Activity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> testList, ParseException e) {
                 if (e == null) {
+
+                    String assignedPerson;
+                    for (int i = 0; i < testList.size(); i++) {
+                        if (testList.get(i).getString("personAssigned") != "") {
+                            assignedPerson = testList.get(i).getString("personAssigned");
+                            difc = testList.get(i).getInt("difc");
+                            // Update user's total difficulty
+                            ParseQuery<ParseUser> query = ParseUser.getQuery();
+                            String[] names = assignedPerson.split(" ");
+                            query.whereEqualTo("firstName", names[0]);
+                            query.whereEqualTo("lastName", names[1]);
+                            query.findInBackground(new FindCallback<ParseUser>() {
+                                public void done(List<ParseUser> objects, ParseException e) {
+                                    if (e == null) {
+                                        // The query was successful.
+                                        for (int i = 0; i < objects.size(); i++) {
+                                            ParseUser user = objects.get(i);
+                                            int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                            int newTotalDifficulty = currentTotalDifficulty - difc;
+                                            user.put("totalDifficulty", newTotalDifficulty);
+                                            user.saveInBackground();
+                                        }
+                                    } else {
+                                        // Something went wrong.
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+
                     Log.d("name = ", task.name);
                     Log.d("score", "Retrieved " + testList.size() + " test objects");
                     for (int i = 0; i < testList.size(); i++) {

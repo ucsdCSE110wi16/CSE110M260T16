@@ -19,15 +19,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/groupName"
         android:layout_alignStart="@+id/groupName"
-        android:layout_toLeftOf="@+id/list_delete"
-        android:layout_toStartOf="@+id/list_delete" />
+        android:layout_toLeftOf="@+id/list_randomize"
+        android:layout_toStartOf="@+id/list_randomize" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Task"
-        android:onClick="onDeleteClick"
-        android:id="@+id/list_delete"
+        android:text="Randomize Assignment"
+        android:onClick="randomizeAssignment"
+        android:id="@+id/list_randomize"
         android:layout_alignTop="@+id/submit"
         android:layout_toRightOf="@+id/groupName"
         android:layout_toEndOf="@+id/groupName" />
