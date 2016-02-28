@@ -88,11 +88,14 @@ public class TaskView extends Activity {
                                     if (e == null) {
                                         // The query was successful.
                                         for (int i = 0; i < objects.size(); i++) {
+
                                             ParseUser user = objects.get(i);
-                                            int currentTotalDifficulty = user.getInt("totalDifficulty");
-                                            int newTotalDifficulty = currentTotalDifficulty - difc;
-                                            user.put("totalDifficulty", newTotalDifficulty);
-                                            user.saveInBackground();
+                                            if (user == ParseUser.getCurrentUser()) {
+                                                int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                                int newTotalDifficulty = currentTotalDifficulty - difc;
+                                                user.put("totalDifficulty", newTotalDifficulty);
+                                                user.saveInBackground();
+                                            }
                                         }
                                     } else {
                                         // Something went wrong.
@@ -145,10 +148,12 @@ public class TaskView extends Activity {
                                         // The query was successful.
                                         for (int i = 0; i < objects.size(); i++) {
                                             ParseUser user = objects.get(i);
-                                            int currentTotalDifficulty = user.getInt("totalDifficulty");
-                                            int newTotalDifficulty = currentTotalDifficulty - difc;
-                                            user.put("totalDifficulty", newTotalDifficulty);
-                                            user.saveInBackground();
+                                            if (user == ParseUser.getCurrentUser()) {
+                                                int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                                int newTotalDifficulty = currentTotalDifficulty - difc;
+                                                user.put("totalDifficulty", newTotalDifficulty);
+                                                user.saveInBackground();
+                                            }
                                         }
                                     } else {
                                         // Something went wrong.

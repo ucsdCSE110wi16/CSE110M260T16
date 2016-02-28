@@ -165,10 +165,13 @@ public class TaskCreator extends Activity {
                         for (int i = 0; i < objects.size(); i++) {
                             ParseUser user;
                             user = objects.get(i);
-                            int currentTotalDifficulty = user.getInt("totalDifficulty");
-                            int newTotalDifficulty = currentTotalDifficulty + difc;
-                            user.put("totalDifficulty", newTotalDifficulty);
-                            user.saveInBackground();
+                            if (user == ParseUser.getCurrentUser()) {
+                                int currentTotalDifficulty = user.getInt("totalDifficulty");
+                                int newTotalDifficulty = currentTotalDifficulty + difc;
+                                // Log.d("newTotoalDiff", Integer.toString(newTotalDifficulty));
+                                user.put("totalDifficulty", newTotalDifficulty);
+                                user.saveInBackground();
+                            }
                         }
                     } else {
                         // Something went wrong.
