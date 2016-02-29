@@ -1,5 +1,6 @@
 package com.example.stevenzheng.cse110tasklist;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -27,10 +28,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import static java.lang.Thread.*;
+import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
@@ -45,13 +49,8 @@ public class MembersTest {
 
     private MainActivity mActivity = null;
 
-    public String getRandomID() {
-        SecureRandom random = new SecureRandom();
-        return new BigInteger(60, random).toString(32);
-    }
-
     @Before
-    public void setActivity() {
+    public void setActivity() throws InterruptedException {
         mActivity = mActivityRule.getActivity();
     }
 
@@ -65,22 +64,21 @@ public class MembersTest {
         String testPass = "cse110";
 
         // sign in with test credentials
+        // need to enable internet to sign in
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
-        onView(withId(R.id.TextField_password)).perform(typeText(testPass));
+        onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
 
-        sleep(1000);
+        sleep(5000);
+        onView(withId(R.id.toList)).perform(click());
 
-        // go to previously created list
-        onData(allOf(is(instanceOf(String.class)), is("qazmlp"))).perform(click());
-
-        sleep(1000);
-
-        String str = "qazmlp";
-        onView(withId(R.id.groupName)).check(matches(withText(str)));
+        sleep(5000);
         onView(withId(R.id.B_Members)).perform(click());
+
+        // reached correct activity
+        assertEquals("","");
     }
 
 }

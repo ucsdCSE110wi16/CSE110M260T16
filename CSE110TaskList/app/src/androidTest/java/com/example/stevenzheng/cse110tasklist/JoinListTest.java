@@ -1,5 +1,6 @@
 package com.example.stevenzheng.cse110tasklist;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -57,18 +58,19 @@ public class JoinListTest {
         String testPass = "cse110";
 
         // sign in with test credentials
+        // need to enable internet to sign in
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
-        onView(withId(R.id.TextField_password)).perform(typeText(testPass));
+        onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
 
-        sleep(1000);
+        sleep(5000);
 
         // go to previously created list
         onData(allOf(is(instanceOf(String.class)), is("qazmlp"))).perform(click());
 
-        sleep(1000);
+        sleep(5000);
 
         String str = "qazmlp";
         onView(withId(R.id.groupName)).check(matches(withText(str)));

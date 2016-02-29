@@ -58,7 +58,7 @@ public class SignInTest {
     @Test
     public void testSignIn() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
-        String fName = "a";
+        String fName = "cse110";
         String testEmail = "cse@cse.com";
         String testPass = "cse110";
 
@@ -67,7 +67,7 @@ public class SignInTest {
         onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
-        onView(withId(B_signIn)).perform(click());
+        onView(withId(R.id.B_signIn)).perform(click());
         // TODO: find non temporary solution to time delay
         sleep(4000);
 

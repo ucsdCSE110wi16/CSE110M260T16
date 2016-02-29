@@ -52,7 +52,9 @@ public class Members extends Activity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 String groupName = MainMenu.groupName;
-                Log.d("after", groupName);
+                if(groupName != null) {
+                    Log.d("after", groupName);
+                }
                 ParseObject group;
                 if (e == null) {
                     Log.d("successful", "query");
