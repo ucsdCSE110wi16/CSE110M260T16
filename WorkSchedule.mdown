@@ -69,23 +69,25 @@ the the app views and cleaning up the look and feel of the front end.
 
 Week 8:
 Enable randomization of task assignment
- - Design a fair randomization algorithm 
-    - using the set difficulties of tasks
-    - we need a default difficulty if users don't set a difficulty
- - Implement it as an option for task assignment
-    - there should be a button on the task list screen that will void all assignments and reassign randomly
- - make due dates for tasks (this is somewhat complete, though due date is merely a label)
-    - need a way to handle overdue tasks
+ - Design a fair randomization algorithm (in progress)
+    - using the set difficulties of tasks (in progress)
+    - we need a default difficulty if users don't set a difficulty (complete)
+ - Implement it as an option for task assignment (complete)
+    - there should be a button on the task list screen that will void all assignments and reassign randomly (complete)
 
+Status update:
+ We updated the UI for a few more views and cleaned up some of the bugs from last week. The main purpose of this week was to implement a fair randomization algorithm, however we ran into trouble with Parse, since we could not modify other users who were not logged in. We had trouble fixing this problem, and thus we were not able to implement a fair system, though we were able to implement a purely random system. We have come up with a workaround on paper, and we are confident we will be able to implement the changes in code in the upcoming week. We also fixed a few design violations in edit/create task, as well a bug in the delete task.
+Bugs to fix: 
+- "Your Tasks" displays all of your tasks, we only want to display the tasks that exist in the current task list context
+- Randomization needs to be fair
+- Android device back button is messing up our navigation flow
 
 Week 9:
 Enable locking of task assignment
- - Add a flag to task, task group, that denotes whether it can be reassigned
- - Implement a voting system where users can decide to lock an assignment
+ - Add a locking button
+ - Once locking is activated, prevent randomziation function from activating
 
-
-Week 10:
 View log of tasks (completion, assignment, creation)
- - Store task completion, assignment, and creation data
- - Display data in log
+- Store task completion, assignment, and creation data
+- Display data in log
 
