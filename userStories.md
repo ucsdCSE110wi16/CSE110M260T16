@@ -5,13 +5,13 @@
  - Priority: 10
  - Time: 10 days
 
- - Given I already am a member of a task list
- - When I press one of my task lists on the main menu
- - Then I will enter a private room, showing the members of that task list, as long as the created tasks
+Given I already am a member of a task list
+When I press one of my task lists on the main menu
+Then I will enter a private room, showing the members of that task list, as long as the created tasks
 
- - Given that I am on the main menu screen
- - When I finish creating or adding a task
- - Then I will go back to the main menu
+Given that I am on the main menu screen
+When I finish creating or adding a task
+Then I will go back to the main menu
 
 2. Logging In and creating task lists 
  - As a customer
@@ -20,18 +20,18 @@
  - Priority: 10
  - Time: 10 days
 
- - Given I already have an account
- - When I log in
- - Then I will see all the task lists that I am a part of
+Given I already have an account
+When I log in
+Then I will see all the task lists that I am a part of
 
- - Given I am already logged in
- - Then when I open the app
- - I will go straight to the main menu view
+Given I am already logged in
+Then when I open the app
+I will go straight to the main menu view
 
- - Given I do not have an account
- - When when I press sign up
- - Then I can fill out my sign up info
- - When I finish
+Given I do not have an account
+When when I press sign up
+Then I can fill out my sign up info
+When I finish
  - THen I can see my main menu page
 
 3. Handle task assignment and completion
@@ -47,13 +47,9 @@ Then I should see just the tasks I am assigned to
 When I click on "see all tasks" 
 Then I should see all the tasks in the tasklist
 
-- light blue background
-
 Given that tasks have a deadline
 When I view a task on the list
 Then I should be able to see the deadline next to it
-
-
 
 Given that I have a task assigned to me
 When I click on that task in the list
@@ -82,12 +78,28 @@ Then I will get notified
  - Priority: 30
  - Time: 5 days
 
+Given that I have received more easy or hard tasks than average
+When task assignments are randomized
+Then I expect to receive a hard or easy task, respectively, next time
+
+Given that task assignments are randomized
+When several dozen tasks have been assigned and completed
+Then the average difficulty of the tasks all members have completed should be roughly equal
+
 5. Enable locking of task assignment
  - As a roommate
  - I want tasks to be locked/assigned to one and each of my roommates.
- - So that people dont back out and everyone receives a fair share of the work for the week/time and avoid repetition.
+ - So that people don't back out and everyone receives a fair share of the work for the week/time and avoid repetition.
  - Priority: 40
  - Time: 5 days
+
+Given that for a certain task the assignment is locked
+When I assign that task to a roommate
+Then they can't back out of completing the task
+
+Given that task assignment can be randomized
+When I lock a task to a member
+Then that task locks to that member regardless of randomization
 
 6. View log of tasks (completion, assignment, creation)
  - As a roommate
@@ -95,6 +107,14 @@ Then I will get notified
  - So that everyone can keep track and log the tasks that are being done for future reference and avoid repetition and ensure fairness.
  - Priority: 20
  - Time: 7 days
+
+Given that there is a log of tasks and tasks have been completed previously
+When I scroll down the log
+Then I can view a list of tasks that were assigned and completed
+
+Given that there is a log of tasks and tasks have been completed previously
+When I scroll down the log
+Then the timeline of tasks displayed should be in reverse chronological order
 
 7. Communication capability between members of a task list
  - As a roommate
