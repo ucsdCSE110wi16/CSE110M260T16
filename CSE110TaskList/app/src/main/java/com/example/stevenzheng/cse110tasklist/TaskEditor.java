@@ -53,7 +53,7 @@ public class TaskEditor extends Activity {
         //Need to be able to see member that clicked on editor, will be added shortly
         membersList = (ListView) findViewById(R.id.List_assignment);
         lastClicked = (TextView) findViewById(R.id.lastClick);
-
+        //Almost done with highlighting who clicked, fixing a few kinks.
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Group");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
