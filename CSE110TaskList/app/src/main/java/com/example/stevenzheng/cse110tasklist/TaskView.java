@@ -65,10 +65,13 @@ public class TaskView extends Activity {
 
     public void delete(View v) {
         ParseQuery query = new ParseQuery("Task");
-        query.whereEqualTo("difc", task.difc);
-        query.whereEqualTo("desc", task.desc);
-        query.whereEqualTo("day", task.day);
-        query.whereEqualTo("year", task.year);
+        query.whereEqualTo("group", task.group );
+        query.whereEqualTo("name", task.name );
+        query.whereEqualTo("difc", task.difc );
+        query.whereEqualTo("desc", task.desc );
+        query.whereEqualTo("day", task.day );
+        query.whereEqualTo("month", task.month );
+        query.whereEqualTo("year", task.year );
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> testList, ParseException e) {
                 if (e == null) {
@@ -124,9 +127,12 @@ public class TaskView extends Activity {
     public void completed(View v)
     {
         ParseQuery query = new ParseQuery("Task");
+        query.whereEqualTo("group", task.group );
+        query.whereEqualTo("name", task.name );
         query.whereEqualTo("difc", task.difc );
         query.whereEqualTo("desc", task.desc );
         query.whereEqualTo("day", task.day );
+        query.whereEqualTo("month", task.month );
         query.whereEqualTo("year", task.year );
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> testList, ParseException e) {
