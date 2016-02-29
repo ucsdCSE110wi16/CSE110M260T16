@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/submitTask"
+        android:layout_gravity="center_horizontal"
+        android:onClick="submitTask" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskName"
+        android:layout_gravity="center_horizontal"
+        android:hint="Task Name" />
+
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"
+        android:id = "@+id/lastClick"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/taskDesc"
+        android:hint="Task Description"
+        android:clickable="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/taskDificulty"
+        android:hint="Task Difficulty"
+        android:clickable="true"
+        android:editable="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weekly"
+        android:id="@+id/repetitive"
+        android:checked="false" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/taskDate"
+        android:clickable="true"
+        android:minDate="today"
+        android:spinnersShown="true"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/assigned"
+        android:clickable="true"
+        android:editable="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/List_assignment"
+        android:choiceMode="singleChoice" />
+
+</LinearLayout>

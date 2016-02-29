@@ -30,7 +30,25 @@ public class TaskEditor extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_creator);
+        setContentView(R.layout.task_editor);
+
+        Task newTask = TaskList.thisTask;
+
+        TextView taskName = (TextView) findViewById(R.id.taskName);
+        TextView taskDesc = (TextView) findViewById(R.id.taskDesc);
+        TextView assigned = (TextView) findViewById(R.id.assigned);
+        TextView taskDifc = (TextView) findViewById(R.id.taskDificulty);
+        CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
+        DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
+
+        taskName.setText(newTask.name);
+        taskDesc.setText(newTask.desc);
+        assigned.setText("Assigned to: " + newTask.personAssigned);
+        assigned.setEnabled(false);
+        taskDifc.setText(String.valueOf(newTask.difc));
+        repetitive.setChecked(newTask.rep);
+        endDate.updateDate(newTask.year, newTask.month, newTask.day);
+
 
         //Need to be able to see member that clicked on editor, will be added shortly
         membersList = (ListView) findViewById(R.id.List_assignment);

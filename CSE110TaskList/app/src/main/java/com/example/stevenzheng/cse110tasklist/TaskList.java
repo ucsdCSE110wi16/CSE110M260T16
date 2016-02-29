@@ -27,6 +27,7 @@ import java.util.PriorityQueue;
  */
 public class TaskList extends Activity {
 
+    static Task thisTask;
     static ListView lv;
 
     static ArrayList<Task> list=  new ArrayList<>();
@@ -130,6 +131,7 @@ public class TaskList extends Activity {
                                 Log.d("name", taskNames.get(position));
                                 i.putExtra("name", taskNames.get(position));
                                 i.putExtra("position", position);
+                                thisTask = TaskList.getTask(position);
                                 startActivity(i);
                             //}
                         }
