@@ -101,6 +101,14 @@ Given that task assignment can be randomized
 When I lock a task to a member
 Then that task locks to that member regardless of randomization
 
+Given that I lock assignment
+When I or another user tries to randomize assignment
+Then they will fail to make assignment changes
+When another user tries to unlock assignment
+Then they will fail to unlock the assignment
+When I try to unlock assignment
+Then assignment will be open to randomization and locking once more
+
 6. View log of tasks (completion, assignment, creation)
  - As a roommate
  - I want to be able to see the timeline of tasks that are being assigned and completed
@@ -116,9 +124,10 @@ Given that there is a log of tasks and tasks have been completed previously
 When I scroll down the log
 Then the timeline of tasks displayed should be in reverse chronological order
 
-7. Communication capability between members of a task list
- - As a roommate
- - I want to be able to chat with the other members within the app to give them status updates
- - So if I or someone else can't complete our task for some reason or need help everyone will be notified
- - Priority: 50 
- - Time: 14 days
+Given that I complete a task
+When I view the log
+Then I should be able to see the task I just completed
+
+Given that I delete a task
+When I view the log
+Then I should not be able to see the task I just deleted
