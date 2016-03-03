@@ -71,4 +71,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="44dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lock"
+        android:id="@+id/B_lock"
+        android:layout_below="@+id/submit"
+        android:layout_alignRight="@+id/list_randomize"
+        android:layout_alignEnd="@+id/list_randomize"
+        android:onClick="lock" />
 </RelativeLayout>

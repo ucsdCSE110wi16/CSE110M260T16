@@ -69,6 +69,14 @@ public class CreateGroup extends Activity {
                         newGroup.put("name", groupNameTxt);
                         newGroup.put("password", groupPasswordTxt);
                         newGroup.put("members", members);
+                        ParseObject lock = new ParseObject("Lock");
+                        int lockState = 0;
+                        lock.put("active", lockState);
+                        lock.put("owner", "");
+                        lock.put("group", groupNameTxt);
+                        lock.saveInBackground();
+
+
                         newGroup.saveInBackground();
 
                         // Get user's current groups
@@ -79,6 +87,7 @@ public class CreateGroup extends Activity {
                         groups.add(newGroup);
                         currentUser.put("groupsList", groups);
                         currentUser.saveInBackground();
+
 
                         // Refresh main menu and finish
                         setResult(RESULT_OK, null);

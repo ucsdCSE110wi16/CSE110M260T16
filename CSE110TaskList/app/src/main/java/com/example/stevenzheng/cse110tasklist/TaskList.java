@@ -193,137 +193,134 @@ public class TaskList extends Activity {
             return  returnVal;
         }
     }
-    public void randomizeAssignment(View v) {
-        // order tasts
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Task");
+    public void lock(View v) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Lock");
         query.whereEqualTo("group", MainMenu.groupName);
         try {
-            List<ParseObject> parseTasks = query.find();
-            String groupName = MainMenu.groupName;
-            TaskSort taskSort = new TaskSort();
-            orderedTasks = new PriorityQueue<ParseObject>(1, taskSort);
+            List<ParseObject> lock = query.find();
+            for (int i = 0; i < lock.size(); i++) {
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                String fullName = currentUser.getString("firstName") + " " + currentUser.getString("lastName");
+                ParseObject currentLock = lock.get(i);
+                if (currentLock.getInt("active") == 0) {
+                    currentLock.put("active", 1);
 
-            for (int i = 0; i < parseTasks.size(); i++) {
-                ParseObject currentTask = parseTasks.get(i);
-                currentTask.put("personAssigned", "");
-                currentTask.save();
-                orderedTasks.offer(currentTask);
-            }
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        // order members
-
-        // get members
-        ParseQuery<ParseObject> membersQuery = ParseQuery.getQuery("Group");
-        membersQuery.whereEqualTo("name", MainMenu.groupName);
-        try {
-            List<ParseObject> parseGroups = membersQuery.find();
-            String groupName = MainMenu.groupName;
-            ParseObject group = parseGroups.get(0);
-
-            ArrayList<ParseUser> members = new ArrayList<ParseUser>();
-            members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
-            UserSort userSort = new UserSort();
-            orderedUserDifficulties = new PriorityQueue<ParseObject>(1, userSort);
-            for (int j = 0; j < members.size(); j++) {
-
-                ParseUser currentUser = (members.get(j)).fetchIfNeeded();
-                String currentName = currentUser.getString("firstName") + " " + currentUser.get("lastName");
-                ParseQuery<ParseObject> parseUserDifficultyQuery = ParseQuery.getQuery("UserDifficulty");
-                parseUserDifficultyQuery.whereEqualTo("name", currentName);
-                try {
-                    List<ParseObject> parseUserDifficulty = parseUserDifficultyQuery.find();
-                    int reset = 0;
-                    (parseUserDifficulty.get(0)).put("totalDifficulty", reset);
-                    (parseUserDifficulty.get(0)).saveInBackground();
-                    orderedUserDifficulties.offer(parseUserDifficulty.get(0));
-                } catch (ParseException e) {
-
+                    currentLock.put("owner", fullName);
+                } else {
+                    if (currentLock.getString("owner") == fullName) {
+                        currentLock.put("owner", "");
+                        currentLock.put("active", 0);
+                    } else {
+                        // Current user does not own lock... cannot turn off lock
+                    }
                 }
-                            /*
+                currentLock.saveInBackground();
+            }
+        } catch (ParseException e) {
+
+        }
+    }
+    public void randomizeAssignment(View v) {
+
+        ParseQuery<ParseObject> lockQuery = ParseQuery.getQuery("Lock");
+        lockQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> lock = lockQuery.find();
+            for (int q = 0; q < lock.size(); q++) {
+
+                ParseObject currentLock = lock.get(q);
+                if (currentLock.getInt("active") == 0) {
+                    Log.d("action", "randomizing");
+                    // order tasks
+
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Task");
+                    query.whereEqualTo("group", MainMenu.groupName);
+                    try {
+                        List<ParseObject> parseTasks = query.find();
+                        String groupName = MainMenu.groupName;
+                        TaskSort taskSort = new TaskSort();
+                        orderedTasks = new PriorityQueue<ParseObject>(1, taskSort);
+
+                        for (int i = 0; i < parseTasks.size(); i++) {
+                            ParseObject currentTask = parseTasks.get(i);
+                            currentTask.put("personAssigned", "");
+                            currentTask.save();
+                            orderedTasks.offer(currentTask);
+                        }
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    // order members
+
+                    // get members
+                    ParseQuery<ParseObject> membersQuery = ParseQuery.getQuery("Group");
+                    membersQuery.whereEqualTo("name", MainMenu.groupName);
+                    try {
+                        List<ParseObject> parseGroups = membersQuery.find();
+                        String groupName = MainMenu.groupName;
+                        ParseObject group = parseGroups.get(0);
+
+                        ArrayList<ParseUser> members = new ArrayList<ParseUser>();
+                        members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
+                        UserSort userSort = new UserSort();
+                        orderedUserDifficulties = new PriorityQueue<ParseObject>(1, userSort);
+                        for (int j = 0; j < members.size(); j++) {
+
+                            ParseUser currentUser = (members.get(j)).fetchIfNeeded();
+                            String currentName = currentUser.getString("firstName") + " " + currentUser.get("lastName");
+                            ParseQuery<ParseObject> parseUserDifficultyQuery = ParseQuery.getQuery("UserDifficulty");
+                            parseUserDifficultyQuery.whereEqualTo("name", currentName);
                             try {
-                                currentUser.fetchIfNeeded();
-                                Log.d("TESTING", currentUser.getString("firstName"));
-                                int difficulty = 0;
-                                currentUser.put("totalDifficultys", difficulty);
-                                currentUser.saveInBackground();
-                            } catch (ParseException e1) {
-                                e1.printStackTrace();
-                            }*/
+                                List<ParseObject> parseUserDifficulty = parseUserDifficultyQuery.find();
+                                int reset = 0;
+                                (parseUserDifficulty.get(0)).put("totalDifficulty", reset);
+                                (parseUserDifficulty.get(0)).saveInBackground();
+                                orderedUserDifficulties.offer(parseUserDifficulty.get(0));
+                            } catch (ParseException e) {
 
-            }
+                            }
 
-            Log.d("users size: ", Integer.toString(orderedUserDifficulties.size()));
+                        }
+
+                        Log.d("users size: ", Integer.toString(orderedUserDifficulties.size()));
 
 
-            while ((orderedTasks.size() > 0) && (orderedUserDifficulties.size() > 0)) {
+                        while ((orderedTasks.size() > 0) && (orderedUserDifficulties.size() > 0)) {
 
-                ParseObject currentTask = orderedTasks.poll();
-                ParseObject currentUser = orderedUserDifficulties.poll();
-                String name = currentUser.getString("name");
-                Log.d("task name", currentTask.getString("name"));
-                int currentTotalDifficulty = currentUser.getInt("totalDifficulty");
-                currentTotalDifficulty += currentTask.getInt("difc");
-                Log.d("newTotalDiff: ", Integer.toString(currentTotalDifficulty));
-                currentUser.put("totalDifficulty", currentTotalDifficulty);
-                currentUser.saveInBackground();
-                currentTask.put("personAssigned", name);
+                            ParseObject currentTask = orderedTasks.poll();
+                            ParseObject currentUser = orderedUserDifficulties.poll();
+                            String name = currentUser.getString("name");
+                            Log.d("task name", currentTask.getString("name"));
+                            int currentTotalDifficulty = currentUser.getInt("totalDifficulty");
+                            currentTotalDifficulty += currentTask.getInt("difc");
+                            Log.d("newTotalDiff: ", Integer.toString(currentTotalDifficulty));
+                            currentUser.put("totalDifficulty", currentTotalDifficulty);
+                            currentUser.saveInBackground();
+                            currentTask.put("personAssigned", name);
 
-                currentTask.saveInBackground();
-                orderedUserDifficulties.offer(currentUser);
-            }
-            refreshList();
+                            currentTask.saveInBackground();
+                            orderedUserDifficulties.offer(currentUser);
+                        }
+                        refreshList();
             /*
             Intent refresh = new Intent(this, TaskList.class);
             startActivity(refresh);
             this.finish();*/
 
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+
+                    }
+
+                } else {
+                    // Lock is active, Cannot randomize
+                }
+            }
         } catch (ParseException e) {
-            e.printStackTrace();
 
         }
-        /*
-        membersQuery.findInBackground(new FindCallback<ParseObject>() {
 
-            public void done(List<ParseObject> objects, ParseException e) {
-                String groupName = MainMenu.groupName;
-                ParseObject group;
-                for (int i = 0; i < objects.size(); i++) {
-                    ParseObject currentGroup = objects.get(i);
-                    if (currentGroup.getString("name").equals(groupName)) {
-                        group = currentGroup;
-                        ArrayList<ParseUser> members = new ArrayList<ParseUser>();
-                        members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
-                        UserSort userSort = new UserSort();
-                        orderedUsers = new PriorityQueue<ParseUser>(1, userSort);
-                        for (int j = 0; j < members.size(); j++) {
-
-                            ParseUser currentUser = members.get(j);
-
-                            try {
-                                currentUser.fetchIfNeeded();
-                                Log.d("TESTING", currentUser.getString("firstName"));
-                                int difficulty = 0;
-                                currentUser.put("totalDifficultys", difficulty);
-                                currentUser.saveInBackground();
-                            } catch (ParseException e1) {
-                                e1.printStackTrace();
-                            }
-                            orderedUsers.offer(currentUser);
-
-                        }
-
-
-                    } else {
-                        Log.d("result", "not equal");
-                    }
-                }
-
-            }
-        });*/
 
 
     }
