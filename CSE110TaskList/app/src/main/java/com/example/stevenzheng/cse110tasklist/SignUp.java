@@ -94,10 +94,6 @@ public class SignUp extends Activity {
             newUser.put("firstName", firstName);
             newUser.put("lastName", lastName);
 
-            // Set initial total difficulty of owned tasks for new user
-            int difc = 0;
-            newUser.put("totalDifficulty", difc);
-
             // New user has empty array of groups
             ArrayList<ParseObject> groups = new ArrayList<ParseObject>();
             newUser.put("groupsList", groups);
@@ -117,15 +113,25 @@ public class SignUp extends Activity {
                     if (e == null) {
                         Toast.makeText(getApplicationContext(), "Signup complete!", Toast.LENGTH_SHORT).show();
 
+                        // Set initial total difficulty of owned tasks for new user
+                        ParseObject userObject = new ParseObject("UserDifficulty");
+                        int difficulty = 0;
+                        String name = firstName + " " + lastName;
+                        Log.d("name:", name);
+                        userObject.put("name", name);
+                        userObject.put("totalDifficulty", difficulty);
+                        userObject.saveInBackground();
 
                         startActivity(i);
                         // Error
                     } else {
-                        Log.d("error",e.toString());
+                        Log.d("error", e.toString());
                         Toast.makeText(getApplicationContext(), "Error in signup", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+
         }
 
     }

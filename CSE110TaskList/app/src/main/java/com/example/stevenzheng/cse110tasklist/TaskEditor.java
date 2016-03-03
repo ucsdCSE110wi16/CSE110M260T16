@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -21,6 +22,7 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class TaskEditor extends Activity {
 
@@ -120,6 +122,7 @@ public class TaskEditor extends Activity {
 
     public void submitTask(View v)
     {
+        Task newTask = TaskList.thisTask;
         Intent i = getIntent();
         final String subjName = i.getStringExtra("name");
 
@@ -154,9 +157,75 @@ public class TaskEditor extends Activity {
 
 
 
+        ParseQuery<ParseObject> originalUserQuery = ParseQuery.getQuery("UserDifficulty");
+        originalUserQuery.whereEqualTo("name", newTask.personAssigned);
+        try {
+            List<ParseObject> parseUserDifficulties = originalUserQuery.find();
+            for (int x = 0; x < parseUserDifficulties.size(); x++) {
+                ParseObject currentUserDifficulty = parseUserDifficulties.get(x);
+                int currentDifficulty = currentUserDifficulty.getInt("totalDifficulty");
+                Log.d("Original: ", Integer.toString(currentDifficulty));
+                currentDifficulty -= newTask.difc;
+                Log.d("New: ", Integer.toString(currentDifficulty));
+                currentUserDifficulty.put("totalDifficulty", currentDifficulty);
+                currentUserDifficulty.saveInBackground();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+        if (assignedPerson != "") {
+            ParseQuery<ParseObject> newUserQuery = ParseQuery.getQuery("UserDifficulty");
+            newUserQuery.whereEqualTo("name", assignedPerson);
+            try {
+                List<ParseObject> parseUserDifficulties = newUserQuery.find();
+                for (int x = 0; x < parseUserDifficulties.size(); x++) {
+                    ParseObject newUserDifficulty = parseUserDifficulties.get(x);
+                    int currentDifficulty = newUserDifficulty.getInt("totalDifficulty");
+                    currentDifficulty += difc;
+                    newUserDifficulty.put("totalDifficulty", currentDifficulty);
+                    newUserDifficulty.saveInBackground();
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Task");
+        query.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> parseTasks = query.find();
+            String groupName = MainMenu.groupName;
+
+            for (int x = 0; x < parseTasks.size(); x++) {
+                ParseObject currentTask = parseTasks.get(x);
+                Log.d("name", currentTask.getString("name"));
+                //Log.d("name", currentTask.getString("personAssigned"));
+                //Log.d("person name", name);
+                if (currentTask.getString("name").equals(subjName)) {
+                    Log.d("result", "equal");
+                    currentTask.put("name", name);
+                    currentTask.put("desc", desc);
+                    currentTask.put("difc", difc);
+                    currentTask.put("rep", rep);
+                    currentTask.put("day", day);
+                    currentTask.put("month", month);
+                    currentTask.put("year", year);
+                    currentTask.put("personAssigned", assignedPerson);
+                    currentTask.saveInBackground();
+
+                }
+                else {
+                    Log.d("result", "not equal");
+                }
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        /*
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 String groupName = MainMenu.groupName;
@@ -201,7 +270,7 @@ public class TaskEditor extends Activity {
                                         // Something went wrong.
                                     }
                                 }
-                            });*/
+                            });*//*
                         }
                         else {
                             Log.d("result", "not equal");
@@ -214,7 +283,7 @@ public class TaskEditor extends Activity {
                 }
             }
         });
-
+*/
 
         /*
          * Right now, I've commented out the task object because I changed the Task class

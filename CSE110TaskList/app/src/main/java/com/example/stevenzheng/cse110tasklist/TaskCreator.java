@@ -152,32 +152,24 @@ public class TaskCreator extends Activity {
         ParseObject newTask =  temp.getParseTask();
         newTask.saveInBackground();
 
+
+
         if (assignedPerson != "") {
             // Update user's total difficulty
-            ParseQuery<ParseUser> query = ParseUser.getQuery();
-            String[] names = assignedPerson.split(" ");
-            query.whereEqualTo("firstName", names[0]);
-            query.whereEqualTo("lastName", names[1]);
-            query.findInBackground(new FindCallback<ParseUser>() {
-                public void done(List<ParseUser> objects, ParseException e) {
-                    if (e == null) {
-                        // The query was successful.
-                        for (int i = 0; i < objects.size(); i++) {
-                            ParseUser user;
-                            user = objects.get(i);
-                            if (user == ParseUser.getCurrentUser()) {
-                                int currentTotalDifficulty = user.getInt("totalDifficulty");
-                                int newTotalDifficulty = currentTotalDifficulty + difc;
-                                // Log.d("newTotoalDiff", Integer.toString(newTotalDifficulty));
-                                user.put("totalDifficulty", newTotalDifficulty);
-                                user.saveInBackground();
-                            }
-                        }
-                    } else {
-                        // Something went wrong.
-                    }
+            ParseQuery<ParseObject> newUserQuery = ParseQuery.getQuery("UserDifficulty");
+            newUserQuery.whereEqualTo("name", assignedPerson);
+            try {
+                List<ParseObject> parseUserDifficulties = newUserQuery.find();
+                for (int x = 0; x < parseUserDifficulties.size(); x++) {
+                    ParseObject newUserDifficulty = parseUserDifficulties.get(x);
+                    int currentDifficulty = newUserDifficulty.getInt("totalDifficulty");
+                    currentDifficulty += difc;
+                    newUserDifficulty.put("totalDifficulty", currentDifficulty);
+                    newUserDifficulty.saveInBackground();
                 }
-            });
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
 
