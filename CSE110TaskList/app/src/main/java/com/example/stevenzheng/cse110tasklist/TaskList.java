@@ -34,6 +34,7 @@ public class TaskList extends Activity {
     ArrayList<String> taskNames = new ArrayList<>(0);
 
     PriorityQueue<ParseObject> orderedTasks;
+    PriorityQueue<ParseObject> orderedTaskGroups;
     PriorityQueue<ParseObject> orderedUserDifficulties;
 
     //boolean delete;
@@ -171,6 +172,13 @@ public class TaskList extends Activity {
         }
     }
 
+    static class TaskGroupSort implements Comparator<ParseObject> {
+        @Override
+        public int compare(ParseObject lhs, ParseObject rhs) {
+            return rhs.getInt("totalDifficulty") - lhs.getInt("totalDifficulty");
+        }
+    }
+
     static class UserSort implements Comparator<ParseObject> {
         @Override
         public int compare(ParseObject lhs, ParseObject rhs) {
@@ -239,26 +247,44 @@ public class TaskList extends Activity {
                 ParseObject currentLock = lock.get(q);
                 if (currentLock.getInt("active") == 0) {
                     Log.d("action", "randomizing");
-                    // order tasks
+                    // clear task assignment
 
                     ParseQuery<ParseObject> query = ParseQuery.getQuery("Task");
                     query.whereEqualTo("group", MainMenu.groupName);
                     try {
                         List<ParseObject> parseTasks = query.find();
-                        String groupName = MainMenu.groupName;
-                        TaskSort taskSort = new TaskSort();
-                        orderedTasks = new PriorityQueue<ParseObject>(1, taskSort);
+                        //String groupName = MainMenu.groupName;
+                        //TaskSort taskSort = new TaskSort();
+                        //orderedTasks = new PriorityQueue<ParseObject>(1, taskSort);
 
                         for (int i = 0; i < parseTasks.size(); i++) {
                             ParseObject currentTask = parseTasks.get(i);
                             currentTask.put("personAssigned", "");
                             currentTask.save();
-                            orderedTasks.offer(currentTask);
+                            //orderedTasks.offer(currentTask);
                         }
 
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+
+                    // order task groups
+                    ParseQuery<ParseObject> groupsQuery = ParseQuery.getQuery("TaskGroup");
+                    groupsQuery.whereEqualTo("group", MainMenu.groupName);
+                    try {
+                        List<ParseObject> parseTaskGroups = groupsQuery.find();
+                        TaskGroupSort taskGroupSort = new TaskGroupSort();
+                        orderedTaskGroups = new PriorityQueue<ParseObject>(1, taskGroupSort);
+
+                        for (int i = 0; i < parseTaskGroups.size(); i++) {
+                            ParseObject currentTaskGroup = parseTaskGroups.get(i);
+                            orderedTaskGroups.offer(currentTaskGroup);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
                     // order members
 
                     // get members
@@ -294,27 +320,47 @@ public class TaskList extends Activity {
                         Log.d("users size: ", Integer.toString(orderedUserDifficulties.size()));
 
 
-                        while ((orderedTasks.size() > 0) && (orderedUserDifficulties.size() > 0)) {
+                        while ((orderedTaskGroups.size() > 0) && (orderedUserDifficulties.size() > 0)) {
+                            Log.d("Action: ", "Randomizing");
+                            Log.d("number of groups: ", Integer.toString(orderedTaskGroups.size()));
 
-                            ParseObject currentTask = orderedTasks.poll();
+                            /* Get highest difficulty group, and lowest difficulty user */
+                            ParseObject currentTaskGroup = orderedTaskGroups.poll();
+                            Log.d("current group name: ", currentTaskGroup.getString("name"));
                             ParseObject currentUser = orderedUserDifficulties.poll();
-                            String name = currentUser.getString("name");
-                            Log.d("task name", currentTask.getString("name"));
-                            int currentTotalDifficulty = currentUser.getInt("totalDifficulty");
-                            currentTotalDifficulty += currentTask.getInt("difc");
-                            Log.d("newTotalDiff: ", Integer.toString(currentTotalDifficulty));
-                            currentUser.put("totalDifficulty", currentTotalDifficulty);
-                            currentUser.saveInBackground();
-                            currentTask.put("personAssigned", name);
 
-                            currentTask.saveInBackground();
+                            /* Assign all tasks in the group to the lowest difficulty user */
+                            ParseQuery<ParseObject> parseTaskQuery = ParseQuery.getQuery("Task");
+                            parseTaskQuery.whereEqualTo("taskGroup", currentTaskGroup.getString("name"));
+                            try {
+                                List<ParseObject> tasks = parseTaskQuery.find();
+                                Log.d("subtasks num: ", Integer.toString(tasks.size()));
+                                for (int t = 0; t < tasks.size(); t++) {
+                                    ParseObject currentTask = tasks.get(t);
+                                    String name = currentUser.getString("name");
+                                    Log.d("task name", currentTask.getString("name"));
+                                    int currentTotalDifficulty = currentUser.getInt("totalDifficulty");
+                                    currentTotalDifficulty += currentTask.getInt("difc");
+                                    Log.d("newTotalDiff: ", Integer.toString(currentTotalDifficulty));
+                                    currentUser.put("totalDifficulty", currentTotalDifficulty);
+                                    currentUser.saveInBackground();
+                                    currentTask.put("personAssigned", name);
+                                    currentTask.saveInBackground();
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            /* Place user back into PQ */
                             orderedUserDifficulties.offer(currentUser);
                         }
-                        refreshList();
-            /*
-            Intent refresh = new Intent(this, TaskList.class);
-            startActivity(refresh);
-            this.finish();*/
+
+                        // update the list
+                        //refreshList();
+
+                        Intent refresh = new Intent(this, TaskList.class);
+                        startActivity(refresh);
+                        this.finish();
 
                     } catch (ParseException e) {
                         e.printStackTrace();
