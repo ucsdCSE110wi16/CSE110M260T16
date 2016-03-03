@@ -103,9 +103,10 @@ public class TaskList extends Activity {
                             int taskMonth = currentTask.getInt("month");
                             int taskYear = currentTask.getInt("year");
                             String taskPersonAssigned = currentTask.getString("personAssigned");
-                            String taskGroup = currentTask.getString("group");
-                            Task task = new Task(taskName, taskDesc, taskDifc, taskRep, taskDay, taskMonth
-                                    , taskYear, taskPersonAssigned, taskGroup);
+                            String taskList = currentTask.getString("group");
+                            String taskGroup = currentTask.getString("taskGroup");
+                            Task task = new Task(taskName, taskDesc, taskDifc,taskGroup, taskRep, taskDay, taskMonth
+                                    , taskYear, taskPersonAssigned, taskList);
                             addToList(task);
                             numOfTasks++;
 

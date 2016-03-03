@@ -125,11 +125,21 @@ public class TaskCreator extends Activity {
         TextView taskName = (TextView) findViewById(R.id.taskName);
         TextView taskDesc = (TextView) findViewById(R.id.taskDesc);
         TextView taskDifc = (TextView) findViewById(R.id.taskDificulty);
+        TextView taskGroupTextView = (TextView) findViewById(R.id.taskGroup); // new
         CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
 
         String name = taskName.getText().toString();
         String desc  = taskDesc.getText().toString();
+
+        String taskGroup = taskGroupTextView.getText().toString(); // new
+        // if no taskGroup set, then give it a random group
+        if (taskGroup.compareTo("") == 0) {
+            double random = Math.random();
+            taskGroup = Double.toString(random);
+        }
+
+
         difc = 0;
         try {
             difc = Integer.parseInt(taskDifc.getText().toString());
@@ -137,13 +147,39 @@ public class TaskCreator extends Activity {
         catch(Exception e) {
             difc = 0;
         }
+
+
+
+        ParseQuery<ParseObject> taskGroupQuery = ParseQuery.getQuery("TaskGroup");
+        taskGroupQuery.whereEqualTo("name", taskGroup);
+        taskGroupQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> taskGroups = taskGroupQuery.find();
+            if (taskGroups.size() == 0) {
+                ParseObject parseTaskGroup = new ParseObject("TaskGroup");
+                parseTaskGroup.put("name", taskGroup);
+                parseTaskGroup.put("group", MainMenu.groupName);
+                parseTaskGroup.put("totalDifficulty", difc);
+                parseTaskGroup.saveInBackground();
+            } else {
+                ParseObject currentTaskGroup = taskGroups.get(0);
+                int newDifficulty = currentTaskGroup.getInt("totalDifficulty");
+                newDifficulty += difc;
+                currentTaskGroup.put("totalDifficulty", newDifficulty);
+                currentTaskGroup.saveInBackground();
+            }
+
+        } catch (ParseException e) {
+
+        }
+
         boolean rep = repetitive.isChecked();
         int day = endDate.getDayOfMonth();
         int month = endDate.getMonth();
         int year =  endDate.getYear();
         
 
-        Task temp = new Task(name, desc, difc, rep, day, month, year, assignedPerson, MainMenu.groupName);
+        Task temp = new Task(name, desc, difc, taskGroup, rep, day, month, year, assignedPerson, MainMenu.groupName);
 
         // Reset the list so we can repopulate it with the new task
         TaskList.list = new ArrayList<>();

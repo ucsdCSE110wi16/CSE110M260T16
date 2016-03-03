@@ -40,6 +40,7 @@ public class TaskEditor extends Activity {
         TextView taskDesc = (TextView) findViewById(R.id.taskDesc);
         TextView assigned = (TextView) findViewById(R.id.assigned);
         TextView taskDifc = (TextView) findViewById(R.id.taskDificulty);
+        TextView taskGroup = (TextView) findViewById(R.id.taskGroup);  // new
         CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
 
@@ -50,6 +51,17 @@ public class TaskEditor extends Activity {
         taskDifc.setText(String.valueOf(newTask.difc));
         repetitive.setChecked(newTask.rep);
         endDate.updateDate(newTask.year, newTask.month, newTask.day);
+
+        // don't display group if it was randomly assigned previously
+        try
+        {
+            Double.parseDouble(newTask.taskGroup);
+        }
+        catch(NumberFormatException e)
+        {
+            //not a double
+            taskGroup.setText(newTask.taskGroup);
+        }
 
 
         //Need to be able to see member that clicked on editor, will be added shortly
@@ -131,6 +143,8 @@ public class TaskEditor extends Activity {
         TextView taskDifc = (TextView) findViewById(R.id.taskDificulty);
         CheckBox repetitive = (CheckBox) findViewById(R.id.repetitive);
         DatePicker endDate = (DatePicker) findViewById(R.id.taskDate);
+        TextView taskGroupTextView = (TextView) findViewById(R.id.taskGroup); // new
+
 
         /* MAKE A LIST OF GROUP MEMBERS HERE, pretty much identical to what I made for CreateGroup.
          * When you click on the person's name, it will assign the task to that person, overriding any previous assignment
@@ -148,13 +162,65 @@ public class TaskEditor extends Activity {
         catch (Exception e) {
             temp = 0;
         }
+
+        String taskGroup = taskGroupTextView.getText().toString(); // new
+        // if no taskGroup set, then give it a random group
+        if (taskGroup.compareTo("") == 0) {
+            double random = Math.random();
+            taskGroup = Double.toString(random);
+        }
+
         final int difc = temp;
         final boolean rep = repetitive.isChecked();
         final int day = endDate.getDayOfMonth();
         final int month = endDate.getMonth();
         final int year =  endDate.getYear();
 
+        // update old group
+        ParseQuery<ParseObject> oldTaskGroupQuery = ParseQuery.getQuery("TaskGroup");
+        oldTaskGroupQuery.whereEqualTo("name", newTask.taskGroup);
+        oldTaskGroupQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> taskGroups = oldTaskGroupQuery.find();
+            if (taskGroups.size() == 1) {
+                ParseObject currentTaskGroup = taskGroups.get(0);
+                int newDifficulty = currentTaskGroup.getInt("totalDifficulty");
+                newDifficulty -= newTask.difc;
+                if (newDifficulty == 0) {
+                    currentTaskGroup.deleteInBackground();
+                } else {
+                    currentTaskGroup.put("totalDifficulty", newDifficulty);
+                    currentTaskGroup.saveInBackground();
+                }
+            }
 
+        } catch (ParseException e) {
+
+        }
+
+        // update new group
+        ParseQuery<ParseObject> taskGroupQuery = ParseQuery.getQuery("TaskGroup");
+        taskGroupQuery.whereEqualTo("name", taskGroup);
+        taskGroupQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> taskGroups = taskGroupQuery.find();
+            if (taskGroups.size() == 0) {
+                ParseObject parseTaskGroup = new ParseObject("TaskGroup");
+                parseTaskGroup.put("name", taskGroup);
+                parseTaskGroup.put("group", MainMenu.groupName);
+                parseTaskGroup.put("totalDifficulty", difc);
+                parseTaskGroup.saveInBackground();
+            } else {
+                ParseObject currentTaskGroup = taskGroups.get(0);
+                int newDifficulty = currentTaskGroup.getInt("totalDifficulty");
+                newDifficulty += difc;
+                currentTaskGroup.put("totalDifficulty", newDifficulty);
+                currentTaskGroup.saveInBackground();
+            }
+
+        } catch (ParseException e) {
+
+        }
 
 
         ParseQuery<ParseObject> originalUserQuery = ParseQuery.getQuery("UserDifficulty");
@@ -207,6 +273,7 @@ public class TaskEditor extends Activity {
                     currentTask.put("name", name);
                     currentTask.put("desc", desc);
                     currentTask.put("difc", difc);
+                    currentTask.put("taskGroup", taskGroup);
                     currentTask.put("rep", rep);
                     currentTask.put("day", day);
                     currentTask.put("month", month);

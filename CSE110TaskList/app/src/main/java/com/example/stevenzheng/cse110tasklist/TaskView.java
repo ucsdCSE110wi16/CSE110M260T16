@@ -104,6 +104,29 @@ public class TaskView extends Activity {
             e.printStackTrace();
         }
 
+        // update old group
+        ParseQuery<ParseObject> oldTaskGroupQuery = ParseQuery.getQuery("TaskGroup");
+        oldTaskGroupQuery.whereEqualTo("name", task.taskGroup);
+        oldTaskGroupQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> taskGroups = oldTaskGroupQuery.find();
+            if (taskGroups.size() == 1) {
+                ParseObject currentTaskGroup = taskGroups.get(0);
+                int newDifficulty = currentTaskGroup.getInt("totalDifficulty");
+                newDifficulty -= task.difc;
+                if (newDifficulty == 0) {
+                    currentTaskGroup.deleteInBackground();
+                } else {
+                    currentTaskGroup.put("totalDifficulty", newDifficulty);
+                    currentTaskGroup.saveInBackground();
+                }
+            }
+
+        } catch (ParseException e) {
+
+        }
+
+
         Intent intent = new Intent(this, TaskList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -153,6 +176,28 @@ public class TaskView extends Activity {
             Log.d("completed",task.name + "was completed");
             //Intent i = new Intent(TaskView.this, TaskList.class);
             //startActivity(i);
+        } catch (ParseException e) {
+
+        }
+
+        // update old group
+        ParseQuery<ParseObject> oldTaskGroupQuery = ParseQuery.getQuery("TaskGroup");
+        oldTaskGroupQuery.whereEqualTo("name", task.taskGroup);
+        oldTaskGroupQuery.whereEqualTo("group", MainMenu.groupName);
+        try {
+            List<ParseObject> taskGroups = oldTaskGroupQuery.find();
+            if (taskGroups.size() == 1) {
+                ParseObject currentTaskGroup = taskGroups.get(0);
+                int newDifficulty = currentTaskGroup.getInt("totalDifficulty");
+                newDifficulty -= task.difc;
+                if (newDifficulty == 0) {
+                    currentTaskGroup.deleteInBackground();
+                } else {
+                    currentTaskGroup.put("totalDifficulty", newDifficulty);
+                    currentTaskGroup.saveInBackground();
+                }
+            }
+
         } catch (ParseException e) {
 
         }
