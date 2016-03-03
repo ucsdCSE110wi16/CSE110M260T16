@@ -34,7 +34,7 @@ public class TaskList extends Activity {
     ArrayList<String> taskNames = new ArrayList<>(0);
 
     PriorityQueue<ParseObject> orderedTasks;
-    PriorityQueue<ParseUser> orderedUsers;
+    PriorityQueue<ParseObject> orderedUserDifficulties;
 
     //boolean delete;
     @Override
@@ -45,11 +45,19 @@ public class TaskList extends Activity {
 
         TextView name = (TextView) findViewById(R.id.groupName);
         name.setText(MainMenu.groupName);
+        refreshList();
 
+    }
+
+    public void refreshList() {
         // reset list
         list = new ArrayList<>();
-        
+
         lv = (ListView) findViewById(R.id.taskList);
+        taskNames = new ArrayList<String>();
+        ArrayAdapter<String> adapterClear = new ArrayAdapter<String>(TaskList.this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, taskNames);
+        lv.setAdapter(adapterClear);
         /*
         final ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         lv.setAdapter(adapter);
@@ -124,11 +132,11 @@ public class TaskList extends Activity {
                                 adapter.notifyDataSetChanged();
                                 delete = false;
                             } else {*/
-                                Intent i = new Intent(TaskList.this, TaskView.class);
-                                i.putExtra("name", taskNames.get(position));
-                                i.putExtra("position", position);
-                                thisTask = TaskList.getTask(position);
-                                startActivity(i);
+                            Intent i = new Intent(TaskList.this, TaskView.class);
+                            i.putExtra("name", taskNames.get(position));
+                            i.putExtra("position", position);
+                            thisTask = TaskList.getTask(position);
+                            startActivity(i);
                             //}
                         }
                     });
@@ -158,26 +166,31 @@ public class TaskList extends Activity {
     static class TaskSort implements Comparator<ParseObject> {
         @Override
         public int compare(ParseObject lhs, ParseObject rhs) {
-            return lhs.getInt("difc") - rhs.getInt("difc");
+            return rhs.getInt("difc") - lhs.getInt("difc");
         }
     }
 
-    static class UserSort implements Comparator<ParseUser> {
+    static class UserSort implements Comparator<ParseObject> {
         @Override
-        public int compare(ParseUser lhs, ParseUser rhs) {
+        public int compare(ParseObject lhs, ParseObject rhs) {
             int returnVal = 0;
             try {
                 returnVal = lhs.fetchIfNeeded().getInt("totalDifficulty") - rhs.fetchIfNeeded().getInt("totalDifficulty");
+                if (returnVal != 0) {
+                    return returnVal;
+                } else {
+                    double random = Math.random();
+                    if (random >= 0.5) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                }
             } catch (ParseException e){
                 e.printStackTrace();
             }
 
-            double random = Math.random();
-            if (random >= 0.5) {
-                return -1;
-            } else {
-                return 1;
-            }
+            return  returnVal;
         }
     }
     public void randomizeAssignment(View v) {
@@ -214,10 +227,22 @@ public class TaskList extends Activity {
             ArrayList<ParseUser> members = new ArrayList<ParseUser>();
             members = (ArrayList<ParseUser>) ((List<ParseUser>) (Object) (group.getList("members")));
             UserSort userSort = new UserSort();
-            orderedUsers = new PriorityQueue<ParseUser>(1, userSort);
+            orderedUserDifficulties = new PriorityQueue<ParseObject>(1, userSort);
             for (int j = 0; j < members.size(); j++) {
 
-                ParseUser currentUser = members.get(j);
+                ParseUser currentUser = (members.get(j)).fetchIfNeeded();
+                String currentName = currentUser.getString("firstName") + " " + currentUser.get("lastName");
+                ParseQuery<ParseObject> parseUserDifficultyQuery = ParseQuery.getQuery("UserDifficulty");
+                parseUserDifficultyQuery.whereEqualTo("name", currentName);
+                try {
+                    List<ParseObject> parseUserDifficulty = parseUserDifficultyQuery.find();
+                    int reset = 0;
+                    (parseUserDifficulty.get(0)).put("totalDifficulty", reset);
+                    (parseUserDifficulty.get(0)).saveInBackground();
+                    orderedUserDifficulties.offer(parseUserDifficulty.get(0));
+                } catch (ParseException e) {
+
+                }
                             /*
                             try {
                                 currentUser.fetchIfNeeded();
@@ -228,19 +253,34 @@ public class TaskList extends Activity {
                             } catch (ParseException e1) {
                                 e1.printStackTrace();
                             }*/
-                orderedUsers.offer(currentUser);
 
             }
 
+            Log.d("users size: ", Integer.toString(orderedUserDifficulties.size()));
 
-            while ((orderedTasks.size() > 0) && (orderedUsers.size() > 0)) {
+
+            while ((orderedTasks.size() > 0) && (orderedUserDifficulties.size() > 0)) {
+
                 ParseObject currentTask = orderedTasks.poll();
-                ParseUser currentUser = orderedUsers.poll();
-                String name = currentUser.getString("firstName") + " " + currentUser.getString("lastName");
+                ParseObject currentUser = orderedUserDifficulties.poll();
+                String name = currentUser.getString("name");
+                Log.d("task name", currentTask.getString("name"));
+                int currentTotalDifficulty = currentUser.getInt("totalDifficulty");
+                currentTotalDifficulty += currentTask.getInt("difc");
+                Log.d("newTotalDiff: ", Integer.toString(currentTotalDifficulty));
+                currentUser.put("totalDifficulty", currentTotalDifficulty);
+                currentUser.saveInBackground();
                 currentTask.put("personAssigned", name);
+
                 currentTask.saveInBackground();
-                orderedUsers.offer(currentUser);
+                orderedUserDifficulties.offer(currentUser);
             }
+            refreshList();
+            /*
+            Intent refresh = new Intent(this, TaskList.class);
+            startActivity(refresh);
+            this.finish();*/
+
         } catch (ParseException e) {
             e.printStackTrace();
 
