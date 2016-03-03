@@ -35,7 +35,7 @@ public class AddGroup extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_group);
+        setContentView(R.layout.add_group_temp);
         currentUser = ParseUser.getCurrentUser();
     }
 

@@ -245,10 +245,12 @@ public class TaskEditor extends Activity {
 
         //TaskList.editList(position, temp);*/
 
-        Intent i1 = new Intent(TaskEditor.this, TaskList.class);
-        startActivity(i1);
-
-            }
+        //Intent i1 = new Intent(TaskEditor.this, TaskList.class);
+        //startActivity(i1);
+        Intent intent = new Intent(this, TaskList.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
 }
 

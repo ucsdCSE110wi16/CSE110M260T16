@@ -128,4 +128,12 @@ public class YourTaskList extends Activity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // Refresh main menu and finish
+        setResult(RESULT_OK, null);
+        finish();
+    }
 }

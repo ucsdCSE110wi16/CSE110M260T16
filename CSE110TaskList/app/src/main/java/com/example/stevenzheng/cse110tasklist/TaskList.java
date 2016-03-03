@@ -85,7 +85,6 @@ public class TaskList extends Activity {
                         //Log.d("name", currentTask.getString("personAssigned"));
                         //Log.d("person name", name);
                         if (currentTask.getString("group").equals(groupName)) {
-                            Log.d("result", "equal");
                             taskNames.add(numOfTasks, currentTask.getString("name"));
 
                             String taskName = currentTask.getString("name");
@@ -109,7 +108,6 @@ public class TaskList extends Activity {
 
                         for (int x = 0; x < list.size(); x ++) {
                             Task task = TaskList.getTask(x);
-                            Log.d("name", task.name);
                         }
                     }
 
@@ -127,8 +125,6 @@ public class TaskList extends Activity {
                                 delete = false;
                             } else {*/
                                 Intent i = new Intent(TaskList.this, TaskView.class);
-                                Log.d("position", Integer.toString(position));
-                                Log.d("name", taskNames.get(position));
                                 i.putExtra("name", taskNames.get(position));
                                 i.putExtra("position", position);
                                 thisTask = TaskList.getTask(position);
@@ -293,9 +289,9 @@ public class TaskList extends Activity {
     }
 
     public static Task getTask(int position) {
-        Log.d("get task position", Integer.toString(position));
+        //Log.d("get task position", Integer.toString(position));
         Task task = list.get(position);
-        Log.d("get task name", task.name);
+        //Log.d("get task name", task.name);
         return task;
     }
 
@@ -321,13 +317,13 @@ public class TaskList extends Activity {
 
     public void onYourTasksClick(View v) {
         Intent i = new Intent(this, YourTaskList.class);
-        startActivity(i);
+        startActivityForResult(i, 1);
     }
     public void buttonOnClick(View v)
     {
         Intent i = new Intent(TaskList.this, TaskCreator.class);
-        startActivity(i);
-        //startActivityForResult(i, 1);
+        //startActivity(i);
+        startActivityForResult(i, 1);
 
    /* TextView edit = (TextView) findViewById(R.id.newTask);
 
@@ -342,5 +338,24 @@ String temp = edit.getText().toString();
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Log.d("result", "refreshing");
+            Intent refresh = new Intent(this, TaskList.class);
+            startActivity(refresh);
+            this.finish();
+        }
+        if(resultCode==RESULT_CANCELED){
 
+        }
+
+        if(resultCode==RESULT_FIRST_USER){
+            Log.d("result", "refreshing");
+            Intent refresh = new Intent(this, TaskList.class);
+            startActivity(refresh);
+            this.finish();
+        }
+    }
 }

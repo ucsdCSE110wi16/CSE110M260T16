@@ -76,6 +76,7 @@ public class CreateTaskTest {
         sleep(5000);
 
         // go to previously created list
+
         sleep(5000);
         onView(withId(R.id.toList)).perform(click());
 

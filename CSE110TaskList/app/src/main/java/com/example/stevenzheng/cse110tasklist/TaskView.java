@@ -60,7 +60,7 @@ public class TaskView extends Activity {
         Log.d("thisname", w.getStringExtra("name"));
         i.putExtra("name", w.getStringExtra("name"));
 
-        startActivity(i);
+        startActivityForResult(i, 1);
     }
 
     public void delete(View v) {
@@ -69,9 +69,9 @@ public class TaskView extends Activity {
         query.whereEqualTo("name", task.name );
         query.whereEqualTo("difc", task.difc );
         query.whereEqualTo("desc", task.desc );
-        query.whereEqualTo("day", task.day );
-        query.whereEqualTo("month", task.month );
-        query.whereEqualTo("year", task.year );
+        query.whereEqualTo("day", task.day);
+        query.whereEqualTo("month", task.month);
+        query.whereEqualTo("year", task.year);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> testList, ParseException e) {
                 if (e == null) {
@@ -115,8 +115,10 @@ public class TaskView extends Activity {
                         tempTest.deleteInBackground();
                     }
                     Log.d("delete", task.name + "was deleted");
-                    Intent i = new Intent(TaskView.this, TaskList.class);
-                    startActivity(i);
+                    //Intent i = new Intent(TaskView.this, TaskList.class);
+                    //startActivity(i);
+                    setResult(RESULT_OK, null);
+                    finish();
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
@@ -177,8 +179,10 @@ public class TaskView extends Activity {
                         tempTest.deleteInBackground();
                     }
                     Log.d("completed",task.name + "was completed");
-                    Intent i = new Intent(TaskView.this, TaskList.class);
-                    startActivity(i);
+                    //Intent i = new Intent(TaskView.this, TaskList.class);
+                    //startActivity(i);
+                    setResult(RESULT_OK, null);
+                    finish();
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
@@ -186,5 +190,6 @@ public class TaskView extends Activity {
         });
 
     }
+
 
 }

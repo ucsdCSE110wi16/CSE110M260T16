@@ -56,14 +56,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="go to List"
+        android:text="Go To Last List"
         android:id="@+id/toList"
         android:layout_below="@+id/List_groups"
         android:layout_toRightOf="@+id/B_createNewList"
         android:layout_toEndOf="@+id/B_createNewList"
         android:onClick="goToList" />
 
- <!-- <android.support.design.widget.CoordinatorLayout
+    <!-- <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

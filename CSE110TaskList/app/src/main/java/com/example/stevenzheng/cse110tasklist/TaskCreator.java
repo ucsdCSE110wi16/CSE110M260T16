@@ -181,12 +181,20 @@ public class TaskCreator extends Activity {
         }
 
 
-        Intent i = new Intent(TaskCreator.this, TaskList.class);
-        startActivity(i);
+        setResult(RESULT_OK, null);
+        finish();
     }
 
     void diffOnClick(View v) {
         TextView view = (TextView) v;
         view.clearComposingText();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // Refresh main menu and finish
+        setResult(RESULT_CANCELED, null);
+        finish();
     }
 }
