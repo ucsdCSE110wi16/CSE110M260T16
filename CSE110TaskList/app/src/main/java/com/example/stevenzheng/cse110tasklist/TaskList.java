@@ -204,14 +204,21 @@ public class TaskList extends Activity {
                 ParseObject currentLock = lock.get(i);
                 if (currentLock.getInt("active") == 0) {
                     currentLock.put("active", 1);
-
                     currentLock.put("owner", fullName);
                 } else {
-                    if (currentLock.getString("owner") == fullName) {
+                    /*
+                    Log.d("Attemption: ", "unlock");
+                    Log.d("owner", currentLock.getString("owner"));
+                    Log.d("fullname", fullName);
+                    int compare = currentLock.getString("owner").compareTo(fullName);
+                    Log.d("compare", Integer.toString(compare));*/
+                    if ((currentLock.getString("owner").compareTo(fullName)) == 0) {
                         currentLock.put("owner", "");
                         currentLock.put("active", 0);
+                        Log.d("Successful: ", "unlock");
                     } else {
                         // Current user does not own lock... cannot turn off lock
+                        Log.d("Unsuccessful: ", "unlock");
                     }
                 }
                 currentLock.saveInBackground();

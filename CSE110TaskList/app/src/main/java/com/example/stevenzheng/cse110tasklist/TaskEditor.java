@@ -174,7 +174,7 @@ public class TaskEditor extends Activity {
             e.printStackTrace();
         }
 
-        if (assignedPerson != "") {
+        if (assignedPerson.compareTo("") != 0) {
             ParseQuery<ParseObject> newUserQuery = ParseQuery.getQuery("UserDifficulty");
             newUserQuery.whereEqualTo("name", assignedPerson);
             try {
