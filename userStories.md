@@ -5,34 +5,12 @@
  - Priority: 10
  - Time: 10 days
 
-Given I already am a member of a task list
-When I press one of my task lists on the main menu
-Then I will enter a private room, showing the members of that task list, as long as the created tasks
-
-Given that I am on the main menu screen
-When I finish creating or adding a task
-Then I will go back to the main menu
-
 2. Logging In and creating task lists 
  - As a customer
  - I want to be able to create a self entity in the task app
  - So that I can manage my own task lists that I'm a part of and manage my own tasks within those task lists
  - Priority: 10
  - Time: 10 days
-
-Given I already have an account
-When I log in
-Then I will see all the task lists that I am a part of
-
-Given I am already logged in
-Then when I open the app
-I will go straight to the main menu view
-
-Given I do not have an account
-When when I press sign up
-Then I can fill out my sign up info
-When I finish
- - THen I can see my main menu page
 
 3. Handle task assignment and completion
  - As a customer
@@ -41,50 +19,12 @@ When I finish
  - Priority: 20
  - Time: 5 days
 
-Given that I have tasks assigned to me
-When I view my shared tasklist 
-Then I should see just the tasks I am assigned to
-When I click on "see all tasks" 
-Then I should see all the tasks in the tasklist
-
-Given that tasks have a deadline
-When I view a task on the list
-Then I should be able to see the deadline next to it
-
-Given that I have a task assigned to me
-When I click on that task in the list
-Then I should be able to view the details of that task
-
-Given that I delete a task
-When I go back to the task list page
-Then I should not see the task I just deleted
-
-Given that I edit a task
-When I click the task again
-Then I should see the updated version
-
-Given that I assign a task to my friend
-When my friend view his/her tasks
-Then they should see the task that I assigned to them
-
-Given that I have a task assigned to me
-When I don't complete the task by the deadline
-Then I will get notified
-
 4. Enable randomization of task assignment
  - As a roommate
  - I want to be able to have tasks randomly assigned to all roommates
  - So that someone doesn't end up with an easy or difficult task every week and does as even amount of work in the long run
  - Priority: 30
  - Time: 5 days
-
-Given that I have received more easy or hard tasks than average
-When task assignments are randomized
-Then I expect to receive a hard or easy task, respectively, next time
-
-Given that task assignments are randomized
-When several dozen tasks have been assigned and completed
-Then the average difficulty of the tasks all members have completed should be roughly equal
 
 5. Enable locking of task assignment
  - As a roommate
@@ -93,41 +33,9 @@ Then the average difficulty of the tasks all members have completed should be ro
  - Priority: 40
  - Time: 5 days
 
-Given that for a certain task the assignment is locked
-When I assign that task to a roommate
-Then they can't back out of completing the task
-
-Given that task assignment can be randomized
-When I lock a task to a member
-Then that task locks to that member regardless of randomization
-
-Given that I lock assignment
-When I or another user tries to randomize assignment
-Then they will fail to make assignment changes
-When another user tries to unlock assignment
-Then they will fail to unlock the assignment
-When I try to unlock assignment
-Then assignment will be open to randomization and locking once more
-
 6. View log of tasks (completion, assignment, creation)
  - As a roommate
  - I want to be able to see the timeline of tasks that are being assigned and completed
  - So that everyone can keep track and log the tasks that are being done for future reference and avoid repetition and ensure fairness.
  - Priority: 20
  - Time: 7 days
-
-Given that there is a log of tasks and tasks have been completed previously
-When I scroll down the log
-Then I can view a list of tasks that were assigned and completed
-
-Given that there is a log of tasks and tasks have been completed previously
-When I scroll down the log
-Then the timeline of tasks displayed should be in reverse chronological order
-
-Given that I complete a task
-When I view the log
-Then I should be able to see the task I just completed
-
-Given that I delete a task
-When I view the log
-Then I should not be able to see the task I just deleted
