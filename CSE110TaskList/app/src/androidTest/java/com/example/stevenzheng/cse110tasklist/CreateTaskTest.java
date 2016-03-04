@@ -28,6 +28,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import static java.lang.Thread.*;
+import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
@@ -56,9 +57,6 @@ public class CreateTaskTest {
         mActivity = mActivityRule.getActivity();
     }
 
-    // Given I already am a member of a task list
-    // When I press one of my task lists on the main menu
-    // Then I will enter a private room, showing the members of that list if they created task
     @Test
     public void testCreateTask() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
@@ -66,36 +64,34 @@ public class CreateTaskTest {
         String testPass = "cse110";
 
         // sign in with test credentials
-        // need to enable internet to sign in
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
         onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
 
-        sleep(5000);
+        // delay to let activity load and in case of slow internet
+        sleep(4000);
 
-        // go to previously created list
+        // go to current task list
+        onData(anything()).inAdapterView(withId(R.id.List_groups)).atPosition(0).perform(click());
 
-        sleep(5000);
-        onView(withId(R.id.toList)).perform(click());
-
-        sleep(5000);
+        sleep(4000);
+        // create task
         onView(withId(R.id.submit)).perform(click());
 
+        // generate random task details
         String taskName = getRandomID();
         String taskDescription = getRandomID();
         String taskDifficulty = "5";
 
-        sleep(5000);
-
+        sleep(4000);
+        // feed random data into task details
         onView(withId(R.id.taskName)).perform(typeText(taskName));
         onView(withId(R.id.taskDesc)).perform(typeText(taskDescription));
-        onView(withId(R.id.taskDificulty)).perform(typeText(taskDifficulty));
+        onView(withId(R.id.taskDificulty)).perform(typeText(taskDifficulty), ViewActions.closeSoftKeyboard());
 
-//        TODO: submit task not yet implemented
-//        onView(withId(R.id.submitTask)).perform(click());
-
+        onView(withId(R.id.submitTask)).perform(click());
     }
 
 }

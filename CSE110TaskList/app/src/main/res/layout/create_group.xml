@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Task List Name"
+        android:hint="Task List Name"
         android:ems="10"
         android:id="@+id/TextField_taskListName"
         android:layout_marginTop="41dp"
@@ -23,7 +23,7 @@
         android:layout_below="@+id/TextField_taskListName"
         android:layout_alignLeft="@+id/TextField_taskListName"
         android:layout_alignStart="@+id/TextField_taskListName"
-        android:text="Password" />
+        android:hint="Password" />
 
     <TextView
         android:layout_width="wrap_content"

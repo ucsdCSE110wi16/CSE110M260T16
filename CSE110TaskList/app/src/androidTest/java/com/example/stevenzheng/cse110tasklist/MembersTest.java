@@ -29,6 +29,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 import static java.lang.Thread.*;
 import static junit.framework.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.instanceOf;
@@ -64,21 +65,25 @@ public class MembersTest {
         String testPass = "cse110";
 
         // sign in with test credentials
-        // need to enable internet to sign in
         onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
         onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
 
-        sleep(5000);
-        onView(withId(R.id.toList)).perform(click());
+        // delay to let activity load and in case of slow internet
+        sleep(4000);
 
-        sleep(5000);
+        // go to current task list
+        onData(anything()).inAdapterView(withId(R.id.List_groups)).atPosition(0).perform(click());
+
+        sleep(4000);
+        // enter Members activity
         onView(withId(R.id.B_Members)).perform(click());
 
-        // reached correct activity
-        assertEquals("","");
+        sleep(4000);
+        // check if entered activity correctly
+        onView(withId(R.id.members_text)).check(matches(withText("Members")));
     }
 
 }

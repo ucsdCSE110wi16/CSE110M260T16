@@ -58,7 +58,7 @@ public class SignInTest {
     @Test
     public void testSignIn() throws InterruptedException {
         onView(withId(R.id.B_signInForm)).perform(click());
-        String fName = "cse110";
+        String fName = "Frank";
         String testEmail = "cse@cse.com";
         String testPass = "cse110";
 
@@ -68,9 +68,11 @@ public class SignInTest {
 
         // click button to sign in
         onView(withId(R.id.B_signIn)).perform(click());
-        // TODO: find non temporary solution to time delay
+
+        // delay to let activity load and in case of slow internet
         sleep(4000);
 
+        // check that name matches (indicates correct login)
         onView(withId(R.id.Text_name)).check(matches(withText(fName)));
     }
 

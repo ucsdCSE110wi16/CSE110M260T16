@@ -1,5 +1,6 @@
 package com.example.stevenzheng.cse110tasklist;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -9,6 +10,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -42,6 +46,11 @@ public class CreateListTest {
 
     private MainActivity mActivity = null;
 
+    public String getRandomID() {
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(60, random).toString(32);
+    }
+
     @Before
     public void setActivity() {
         mActivity = mActivityRule.getActivity();
@@ -52,25 +61,31 @@ public class CreateListTest {
     // Then I should be in a screen allowing me to create lists
    @Test
    public void testCreateList() throws InterruptedException {
-        onView(withId(R.id.B_signInForm)).perform(click());
-        String testEmail = "cse@cse.com";
-        String testPass = "cse110";
+       onView(withId(R.id.B_signInForm)).perform(click());
+       String testEmail = "cse2@cse.com";
+       String testPass = "cse110";
 
-        // sign in with test credentials
-        onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
-        onView(withId(R.id.TextField_password)).perform(typeText(testPass));
+       // sign in with test credentials
+       onView(withId(R.id.TextField_email)).perform(typeText(testEmail));
+       onView(withId(R.id.TextField_password)).perform(typeText(testPass), ViewActions.closeSoftKeyboard());
 
-        // click button to sign in
-        onView(withId(R.id.B_signIn)).perform(click());
+       // click button to sign in
+       onView(withId(R.id.B_signIn)).perform(click());
 
-        sleep(1000);
+       // delay to let activity load and in case of slow internet
+       sleep(4000);
+       onView(withId(R.id.B_createNewList)).perform(click());
 
-        String str = "Create Task List";
-        // click button to sign in
-        onView(withId(R.id.B_createNewList)).perform(click());
-        // TODO: find non temporary solution to time delay
-        sleep(2000);
-        onView(withId(R.id.textView3)).check(matches(withText(str)));
+       // generate random task details
+       String listName = getRandomID();
+       String listPass = getRandomID();
+
+       sleep(4000);
+       // feed random data into task details
+       onView(withId(R.id.TextField_taskListName)).perform(typeText(listName));
+       onView(withId(R.id.TextField_password)).perform(typeText(listPass), ViewActions.closeSoftKeyboard());
+
+       onView(withId(R.id.B_create)).perform(click());
     }
 
 }
