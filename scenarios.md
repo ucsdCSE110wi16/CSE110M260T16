@@ -2,43 +2,43 @@
 
 1. `SignInTest`
 
-- Given I already have an account
-- When I log in
-- Then I will see all the task lists that I am a part of
+  * Given I already have an account
+When I log in
+Then I will see all the task lists that I am a part of
 
 2. `CreateTaskTest`
 
-- Given I already am a member of a task list, and other members have created tasks
+  * Given I already am a member of a task list, and other members have created tasks
 When I press one of my task lists on the main menu
 Then I will enter a private room, showing the members of that task list
 
-- Given that I am on the main menu screen
+  * Given that I am on the main menu screen
 When I finish creating or adding a task
 Then I will go back to the main menu
 
-- Given I already am a member of a task list
+  * Given I already am a member of a task list
 When I finish creating a task
 Then it will be added to the menu
 
 3. `CreateListTest`
 
-- Given that I already have an account
+  * Given that I already have an account
 When I login and choose to create a new task list
 Then I will create a new task list that
 
 4. `MembersTest`
 
-- Given I already am a member of a task list
+  * Given I already am a member of a task list
 When I press the button to view the members in this task list
 Then I will enter a screen displaying the users that belong to the current task list
 
 5. `UnitTest`
 
-- Given I am attempting to sign up for an account
+  * Given I am attempting to sign up for an account
 When I enter a password that is too short
 Then I will be rejected from creating an account
 
-- Given I am attempting to sign up for an account
+  * Given I am attempting to sign up for an account
 When I enter an invalid email
 Then I will be rejected from creating an account
 
