@@ -39,23 +39,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/B_signUp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+    <!--<com.facebook.login.widget.LoginButton-->
+        <!--android:id="@+id/login_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_above="@+id/B_signUp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="25dp" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" "
-        android:id="@+id/info"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/login_button"
-        android:layout_centerHorizontal="true" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text=" "-->
+        <!--android:id="@+id/info"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_above="@+id/login_button"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,8 +77,6 @@
         android:layout_above="@+id/textView"
         android:layout_alignLeft="@+id/B_signUp"
         android:layout_alignStart="@+id/B_signUp"
-        android:layout_alignRight="@+id/login_button"
-        android:layout_alignEnd="@+id/login_button"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="-20dp" />
 

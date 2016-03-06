@@ -39,14 +39,6 @@ public class MainMenu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        // FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab_main);
-        // FAB.setOnClickListener(new View.OnClickListener() {
-        //     @Override
-        //     public void onClick(View v) {
-        //         Toast.makeText(MainMenu.this, "Would you like a coffee?", Toast.LENGTH_SHORT).show();
-        //     }
-        // });
-
         // Get ListView object from xml
         groupsList = (ListView)findViewById(R.id.List_groups);
 

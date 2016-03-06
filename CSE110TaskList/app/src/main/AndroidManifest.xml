@@ -11,15 +11,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="com.parse.APPLICATION_ID"
@@ -44,13 +35,13 @@
             android:name=".About"
             android:label="@string/action_about"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainMenu" />
-        <activity android:name=".CreateGroup" />
-        <activity android:name=".AddGroup" />
-        <activity android:name=".TaskList" />
-        <activity android:name=".TaskCreator" />
-        <activity android:name=".TaskView" />
-        <activity android:name=".Members" android:theme="@style/AppTheme.Dark"/>
+        <activity android:name=".MainMenu"/>
+        <activity android:name=".CreateGroup"/>
+        <activity android:name=".AddGroup"/>
+        <activity android:name=".TaskList"/>
+        <activity android:name=".TaskCreator"/>
+        <activity android:name=".TaskView"/>
+        <activity android:name=".Members"/>
         <activity
             android:name=".TaskEditor"
             android:label="@string/title_activity_task_editor"
