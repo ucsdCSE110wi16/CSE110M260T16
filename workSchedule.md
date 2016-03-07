@@ -91,3 +91,5 @@ View log of tasks (completion, assignment, creation)
 - Store task completion, assignment, and creation data
 - Display data in log
 
+Status update: We implemented a locking system where once a user locks assignment, then no one can use the random assignment option. Only the user who locks can unlock. UI will be fully updated by Monday's presentation. Task groups have been implemented, users will be able to attach a group/category to each task, and assign them to different people, but if random assignment is done, all tasks in the same group will be assigned together. Additionally, the random assignment now supports fairness, which will optimize difficulty balance between members in the group. Also, having the assigned person highlighted in the list when editing and creating tasks will be done by tomorrow's presentation.
+
