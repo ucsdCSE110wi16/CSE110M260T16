@@ -80,7 +80,11 @@ public class TaskView extends Activity {
                 ParseObject tempTest = parseTask.get(i);
                 tempTest.deleteInBackground();
             }
-            Log.d("completed",task.name + "was completed");
+            ParseObject addLog = new ParseObject("Log");
+            addLog.put("group",task.group);
+            addLog.put("text", task.name + "was deleted");
+            addLog.saveInBackground();
+            Log.d("completed",task.name + "was deleted");
             //Intent i = new Intent(TaskView.this, TaskList.class);
             //startActivity(i);
         } catch (ParseException e) {
@@ -173,6 +177,10 @@ public class TaskView extends Activity {
                 ParseObject tempTest = parseTask.get(i);
                 tempTest.deleteInBackground();
             }
+            ParseObject addLog = new ParseObject("Log");
+            addLog.put("group",task.group);
+            addLog.put("text", task.name + "was completed");
+            addLog.saveInBackground();
             Log.d("completed",task.name + "was completed");
             //Intent i = new Intent(TaskView.this, TaskList.class);
             //startActivity(i);

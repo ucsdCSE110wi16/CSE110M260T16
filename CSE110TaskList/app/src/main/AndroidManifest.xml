@@ -33,6 +33,7 @@
         <activity android:name=".SignUp" android:theme="@style/AppTheme.Dark"/>
         <activity android:name=".About"/>
         <activity android:name=".MainMenu"/>
+        <activity android:name=".Log"/>
         <activity android:name=".CreateGroup"/>
         <activity android:name=".AddGroup"/>
         <activity android:name=".TaskList"/>
