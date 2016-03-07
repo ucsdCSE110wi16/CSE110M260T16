@@ -37,6 +37,7 @@ public class TaskCreator extends Activity {
     String assignedPerson = ""; // name of person assigned to do the task, if not set it will be empty string
     int difc;
 
+    //Working on implementing the highlight
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
