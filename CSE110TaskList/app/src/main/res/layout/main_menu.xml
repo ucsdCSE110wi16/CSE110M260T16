@@ -2,27 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/accent_material_light">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add List"
-        android:id="@+id/B_addNewList"
-        android:onClick="onButtonClick"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Name"
+        android:textAllCaps="true"
         android:id="@+id/Text_name"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
+        android:layout_marginTop="100dp"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,17 +26,8 @@
         android:id="@+id/Text_taskLists"
         android:layout_below="@+id/Text_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_new_list"
-        android:id="@+id/B_createNewList"
-        android:onClick="onButtonClick"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="15dp"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -51,59 +36,48 @@
         android:layout_below="@+id/Text_taskLists"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/B_addNewList"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice"
+        android:layout_marginTop="20dp"
+        android:background="@color/accent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go To Last List"
-        android:id="@+id/toList"
-        android:layout_below="@+id/List_groups"
-        android:layout_toRightOf="@+id/B_createNewList"
-        android:layout_toEndOf="@+id/B_createNewList"
-        android:onClick="goToList" />
-
-    <!-- <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/main_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
 
-   <android.support.v7.widget.RecyclerView
-         android:id="@+id/rvToDoList"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
-
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab_main"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_add"
-    android:layout_gravity="bottom|end"
-    android:layout_margin="@dimen/fab_margin"
-    />
-
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="top|end"
-    android:layout_marginBottom="0dp"
-    android:layout_marginEnd="0dp"
-    android:layout_marginLeft="0dp"
-    android:layout_marginRight="0dp"
-    android:layout_marginStart="0dp"
-    android:layout_marginTop="0dp"
-    android:src="@android:drawable/ic_media_play"
-    app:layout_anchor="@id/fab_main"
-    app:layout_anchorGravity="top" />
-
-
- </android.support.design.widget.CoordinatorLayout> -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add List"
+            android:id="@+id/B_addNewList"
+            android:onClick="onButtonClick"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1"/>
 
 
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go To Last List"
+            android:id="@+id/toList"
+            android:layout_below="@+id/List_groups"
+            android:layout_toRightOf="@+id/B_createNewList"
+            android:layout_toEndOf="@+id/B_createNewList"
+            android:onClick="goToList"
+            android:layout_weight="1"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_new_list"
+            android:id="@+id/B_createNewList"
+            android:onClick="onButtonClick"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"/>
+    </LinearLayout>
 </RelativeLayout>
