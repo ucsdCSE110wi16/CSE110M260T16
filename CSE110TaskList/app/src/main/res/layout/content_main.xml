@@ -17,24 +17,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="41dp">
 
-        <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/login_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_above="@+id/B_signUp"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="25dp" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text=" "-->
-        <!--android:id="@+id/info"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_above="@+id/login_button"-->
-        <!--android:layout_centerHorizontal="true" />-->
-
         <ImageView android:src="@drawable/logo"
             android:layout_width="wrap_content"
             android:layout_height="72dp"

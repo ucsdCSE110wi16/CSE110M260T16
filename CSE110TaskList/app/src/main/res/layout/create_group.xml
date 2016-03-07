@@ -1,46 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/accent_material_light">
 
-    <EditText
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Task List Name"
-        android:ems="10"
-        android:id="@+id/TextField_taskListName"
-        android:layout_marginTop="41dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:paddingTop="76dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/TextField_password"
-        android:layout_below="@+id/TextField_taskListName"
-        android:layout_alignLeft="@+id/TextField_taskListName"
-        android:layout_alignStart="@+id/TextField_taskListName"
-        android:hint="Password" />
-
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/create_task_list"
         android:id="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/abc_primary_text_disable_only_material_dark" />
 
-    <Button
-        android:layout_width="wrap_content"
+
+        <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Task List Name"
+        android:ems="10"
+        android:id="@+id/TextField_taskListName"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:foregroundTint="@color/abc_primary_text_disable_only_material_dark"
+        android:backgroundTint="@color/abc_primary_text_disable_only_material_dark"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
+
+
+        <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/TextField_password"
+        android:hint="Password"
+        android:layout_below="@+id/TextField_taskListName"
+        android:layout_alignLeft="@+id/TextField_taskListName"
+        android:layout_alignStart="@+id/TextField_taskListName"
+        android:layout_marginTop="50dp"
+        android:foregroundTint="@color/abc_primary_text_disable_only_material_dark"
+        android:backgroundTint="@color/abc_primary_text_disable_only_material_dark"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:textColorHint="@color/abc_primary_text_material_dark" />
+
+
+        <Button
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="CREATE"
         android:id="@+id/B_create"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="134dp"
-        android:onClick="onButtonClick" />
+        android:onClick="onButtonClick"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:background="@drawable/ripple"/>
+    </LinearLayout>
 </RelativeLayout>
+
