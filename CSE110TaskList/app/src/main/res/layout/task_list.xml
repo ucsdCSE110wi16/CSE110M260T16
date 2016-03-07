@@ -7,87 +7,110 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cs110group16.todo.MainActivity">
+    tools:context="cs110group16.todo.MainActivity"
+    android:background="@color/accent_material_light">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="create task"
-        android:id="@+id/submit"
-        android:onClick="buttonOnClick"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/groupName"
-        android:layout_alignStart="@+id/groupName"
-        android:layout_toLeftOf="@+id/list_randomize"
-        android:layout_toStartOf="@+id/list_randomize" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Tasks"
+            android:id="@+id/B_yourTasks"
+            android:layout_below="@+id/submit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onYourTasksClick"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Randomize Assignment"
-        android:onClick="randomizeAssignment"
-        android:id="@+id/list_randomize"
-        android:layout_alignTop="@+id/submit"
-        android:layout_toRightOf="@+id/groupName"
-        android:layout_toEndOf="@+id/groupName" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lock"
+            android:id="@+id/B_lock"
+            android:layout_below="@+id/submit"
+            android:layout_alignRight="@+id/list_randomize"
+            android:layout_alignEnd="@+id/list_randomize"
+            android:onClick="lock"
+            android:layout_weight="1"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Members"
-        android:id="@+id/B_Members"
-        android:onClick="onMembersClick"
-        android:layout_alignTop="@+id/submit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/submit"
-        android:layout_toStartOf="@+id/submit" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="log"
+            android:id="@+id/logButton"
+            android:layout_below="@+id/groupName"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Tasks"
-        android:id="@+id/B_yourTasks"
-        android:layout_below="@+id/submit"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onYourTasksClick"
-        android:focusableInTouchMode="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Randomize Task"
+            android:onClick="randomizeAssignment"
+            android:id="@+id/list_randomize"
+            android:layout_alignTop="@+id/submit"
+            android:layout_toRightOf="@+id/groupName"
+            android:layout_toEndOf="@+id/groupName"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="new task"
+            android:id="@+id/submit"
+            android:onClick="buttonOnClick"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/groupName"
+            android:layout_alignStart="@+id/groupName"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Members"
+            android:id="@+id/B_Members"
+            android:onClick="onMembersClick"
+            android:layout_alignTop="@+id/submit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/submit"
+            android:layout_toStartOf="@+id/submit"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
+        android:textAllCaps="true"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/groupName"
         android:text="Group Name"
         android:layout_below="@+id/submit"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:textColor="@android:color/white" />
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskList"
         android:layout_below="@+id/submit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="170dp"
+        android:background="@android:color/white" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lock"
-        android:id="@+id/B_lock"
-        android:layout_below="@+id/submit"
-        android:layout_alignRight="@+id/list_randomize"
-        android:layout_alignEnd="@+id/list_randomize"
-        android:onClick="lock" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="log"
-        android:id="@+id/logButton"
-        android:layout_below="@+id/groupName"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>
