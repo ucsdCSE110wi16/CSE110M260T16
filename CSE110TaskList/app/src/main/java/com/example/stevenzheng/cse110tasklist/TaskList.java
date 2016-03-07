@@ -37,7 +37,6 @@ public class TaskList extends Activity {
     PriorityQueue<ParseObject> orderedTaskGroups;
     PriorityQueue<ParseObject> orderedUserDifficulties;
 
-    //boolean delete;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +58,7 @@ public class TaskList extends Activity {
         ArrayAdapter<String> adapterClear = new ArrayAdapter<String>(TaskList.this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, taskNames);
         lv.setAdapter(adapterClear);
-        /*
-        final ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
-        lv.setAdapter(adapter);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position,
-                                    long id) {
-                if (delete) {
-                    list.remove(position);
-                    adapter.notifyDataSetChanged();
-                    delete = false;
-                } else {
-                    Intent i = new Intent(TaskList.this, TaskView.class);
-                    i.putExtra("position", position);
-                    startActivity(i);
-                }
-            }
-        });*/
 
         // When created, queries for tasks that belong to this group, displays all tasks found
         // in the list
@@ -420,17 +401,6 @@ public class TaskList extends Activity {
         Intent i = new Intent(TaskList.this, TaskCreator.class);
         //startActivity(i);
         startActivityForResult(i, 1);
-
-   /* TextView edit = (TextView) findViewById(R.id.newTask);
-
-String temp = edit.getText().toString();
-    System.out.println("nik you fucker");
-    list.add(temp);
-    System.out.println("nik has a tiny dick");
-    lv.invalidateViews();
-    System.out.println("nik doesn't know how to spell his name");
-    edit.setText("");
-    */
 
     }
 

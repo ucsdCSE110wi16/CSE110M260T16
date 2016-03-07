@@ -35,7 +35,6 @@ public class Task {
         this.taskGroup = taskGroup;
     }
 
-    // John, I added a function to convert this task object into a parse object so it can be saved - Steven
     public ParseObject getParseTask() {
 
         ParseObject parseTask =  new ParseObject("Task");
