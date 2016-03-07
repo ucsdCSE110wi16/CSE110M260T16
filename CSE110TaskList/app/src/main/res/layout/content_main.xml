@@ -33,7 +33,7 @@
             android:layout_above="@+id/B_signInForm"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="59dp"
-            android:gravity="center_horizontal" />
+            android:gravity="center" />
 
         <Button
             android:layout_width="fill_parent"

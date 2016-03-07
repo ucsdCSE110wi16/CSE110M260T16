@@ -37,15 +37,6 @@
             android:onClick="lock"
             android:layout_weight="1"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="log"
-            android:id="@+id/logButton"
-            android:layout_below="@+id/groupName"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"/>
-
     </LinearLayout>
 
     <LinearLayout
