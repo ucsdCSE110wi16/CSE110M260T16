@@ -406,6 +406,11 @@ public class TaskList extends Activity {
         startActivity(i);
     }
 
+    public void onLogClick(View v) {
+        Intent i = new Intent(this, Log.class);
+        startActivity(i);
+    }
+
     public void onYourTasksClick(View v) {
         Intent i = new Intent(this, YourTaskList.class);
         startActivityForResult(i, 1);

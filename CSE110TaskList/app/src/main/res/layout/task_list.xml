@@ -52,7 +52,8 @@
         android:layout_below="@+id/submit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onYourTasksClick" />
+        android:onClick="onYourTasksClick"
+        android:focusableInTouchMode="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,4 +82,12 @@
         android:layout_alignRight="@+id/list_randomize"
         android:layout_alignEnd="@+id/list_randomize"
         android:onClick="lock" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="log"
+        android:id="@+id/logButton"
+        android:layout_below="@+id/groupName"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

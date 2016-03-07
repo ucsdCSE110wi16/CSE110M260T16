@@ -45,7 +45,7 @@ public class Log extends Activity {
         // reset list
         log = new ArrayList<>();
 
-        logView = (ListView) findViewById(R.id.taskList);
+        logView = (ListView) findViewById(R.id.logList);
         logNames = new ArrayList<String>();
         ParseQuery query = new ParseQuery("Log");
         query.whereEqualTo("group", MainMenu.groupName);
@@ -71,5 +71,15 @@ public class Log extends Activity {
         logView.setAdapter(adapterClear);
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // Refresh main menu and finish
+        setResult(RESULT_OK, null);
+        finish();
+    }
+
 
 }
