@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/accent_material_light">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="76dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -9,37 +18,56 @@
         android:text="Add Task List"
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:layout_marginTop="0dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Task List Name"
+            android:ems="10"
+            android:id="@+id/TextField_findtaskListName"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/TextField_groupPassword"
+            android:layout_alignStart="@+id/TextField_groupPassword"
+            android:layout_marginTop="40dp"
+            android:autoText="false"
+            android:textColor="#ffffff"
+            android:textColorHint="@color/abc_primary_text_material_dark"
+            android:foreground="@color/abc_primary_text_material_dark"
+            android:backgroundTint="@color/abc_primary_text_material_dark" />
+
+        <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/TextField_groupPassword"
         android:layout_below="@+id/TextField_findtaskListName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp" />
+        android:layout_marginTop="50dp"
+            android:textColor="#ffffff"
+            android:textColorHint="@color/abc_primary_text_material_dark"
+            android:foreground="@color/abc_primary_text_material_dark"
+            android:backgroundTint="@color/abc_primary_text_material_dark"
+            android:text="Password" />
 
-    <Button
-        android:layout_width="wrap_content"
+        <Button
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Join Group"
         android:id="@+id/B_joinGroup"
         android:onClick="onButtonClick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="103dp" />
+        android:layout_marginBottom="103dp"
+            android:background="@drawable/ripple"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/abc_primary_text_disable_only_material_dark" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Task List Name"
-        android:ems="10"
-        android:id="@+id/TextField_findtaskListName"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/TextField_groupPassword"
-        android:layout_alignStart="@+id/TextField_groupPassword"
-        android:layout_marginTop="80dp" />
+    </LinearLayout>
 </RelativeLayout>
