@@ -59,7 +59,7 @@
             android:text="@string/sign_up"
             android:id="@+id/B_signUp"
             android:onClick="onButtonClick"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/ripple"
             android:textColor="#ffffff"
             style="?android:attr/borderlessButtonStyle"
             android:layout_marginBottom="104dp"
@@ -72,13 +72,28 @@
             android:text="@string/sign_in"
             android:id="@+id/B_signInForm"
             android:onClick="onButtonClick"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/ripple"
             android:textColor="#ffffff"
             style="?android:attr/borderlessButtonStyle"
             android:layout_marginBottom="38dp"
             android:layout_above="@+id/B_signUp"
             android:layout_alignLeft="@+id/B_signUp"
             android:layout_alignStart="@+id/B_signUp"
-            android:layout_marginTop="-50dp" />
+            android:layout_marginTop="-75dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="ABOUT"
+            android:id="@+id/B_about"
+            android:onClick="onButtonClick"
+            android:background="@drawable/ripple"
+            android:textColor="#ffffff"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginBottom="38dp"
+            android:layout_above="@+id/B_signUp"
+            android:layout_alignLeft="@+id/B_signUp"
+            android:layout_alignStart="@+id/B_signUp"
+            android:layout_marginTop="-12dp" />
     </LinearLayout>
 </RelativeLayout>
