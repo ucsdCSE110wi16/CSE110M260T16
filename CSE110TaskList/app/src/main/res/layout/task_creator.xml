@@ -2,22 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="submit"
-        android:id="@+id/submitTask"
-        android:layout_gravity="center_horizontal"
-        android:onClick="submitTask" />
+    android:weightSum="1"
+    android:background="@color/colorPrimary">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskName"
         android:layout_gravity="center_horizontal"
-        android:hint="Task Name" />
+        android:hint="Task Name"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
 
     <TextView
         android:layout_width="1dp"
@@ -30,7 +26,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/taskDesc"
         android:hint="Task Description"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white" />
 
     <EditText
         android:layout_width="match_parent"
@@ -40,21 +40,30 @@
         android:id="@+id/taskDificulty"
         android:hint="Task Difficulty"
         android:clickable="true"
-        android:editable="true" />
+        android:editable="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/taskGroup"
         android:layout_gravity="center_horizontal"
-        android:hint="Task Group" />
+        android:hint="Task Group"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weekly"
         android:id="@+id/repetitive"
-        android:checked="false" />
+        android:checked="false"
+        android:textColor="@android:color/white" />
 
     <DatePicker
         android:layout_width="wrap_content"
@@ -66,12 +75,24 @@
         android:layout_gravity="center_horizontal"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
-        />
+        style="@style/AppTheme.Dark.Dialog"
+        android:calendarTextColor="@android:color/white" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:id="@+id/submitTask"
+        android:layout_gravity="center_horizontal"
+        android:onClick="submitTask"
+        android:layout_marginTop="15dp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/List_assignment"
-        android:choiceMode="singleChoice" />
+        android:choiceMode="singleChoice"
+        android:background="@android:color/white"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
