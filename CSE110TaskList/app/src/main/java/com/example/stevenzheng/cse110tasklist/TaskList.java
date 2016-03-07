@@ -18,6 +18,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -67,6 +68,10 @@ public class TaskList extends Activity {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 String groupName = MainMenu.groupName;
+                Calendar calendar = Calendar.getInstance();
+                int month=calendar.get(Calendar.MONTH)+1;
+                int Currentday=calendar.get(Calendar.DAY_OF_MONTH);
+                int year = calendar.get(Calendar.YEAR);
 
                 if (e == null) {
                     int numOfTasks = 0;
@@ -75,23 +80,36 @@ public class TaskList extends Activity {
                         //Log.d("name", currentTask.getString("personAssigned"));
                         //Log.d("person name", name);
                         if (currentTask.getString("group").equals(groupName)) {
-                            taskNames.add(numOfTasks, currentTask.getString("name"));
+                            if(Currentday>currentTask.getInt("day") && month>=currentTask.getInt("month")
+                                    && year>=currentTask.getInt("year") )
+                            {
+                                ParseObject addLog = new ParseObject("Log");
+                                addLog.put("group",currentTask.getString("group"));
+                                addLog.put("text", currentTask.getString("name") + "has timed" +
+                                        " out and was deleted");
+                                addLog.saveInBackground();
+                                currentTask.deleteInBackground();
 
-                            String taskName = currentTask.getString("name");
-                            String taskDesc = currentTask.getString("desc");
-                            int taskDifc = currentTask.getInt("difc");
-                            boolean taskRep = currentTask.getBoolean("rep");
-                            int taskDay = currentTask.getInt("day");
-                            int taskMonth = currentTask.getInt("month");
-                            int taskYear = currentTask.getInt("year");
-                            String taskPersonAssigned = currentTask.getString("personAssigned");
-                            String taskList = currentTask.getString("group");
-                            String taskGroup = currentTask.getString("taskGroup");
-                            Task task = new Task(taskName, taskDesc, taskDifc,taskGroup, taskRep, taskDay, taskMonth
-                                    , taskYear, taskPersonAssigned, taskList);
-                            addToList(task);
-                            numOfTasks++;
+                            }
 
+                            else{
+                                taskNames.add(numOfTasks, currentTask.getString("name"));
+
+                                String taskName = currentTask.getString("name");
+                                String taskDesc = currentTask.getString("desc");
+                                int taskDifc = currentTask.getInt("difc");
+                                boolean taskRep = currentTask.getBoolean("rep");
+                                int taskDay = currentTask.getInt("day");
+                                int taskMonth = currentTask.getInt("month");
+                                int taskYear = currentTask.getInt("year");
+                                String taskPersonAssigned = currentTask.getString("personAssigned");
+                                String taskList = currentTask.getString("group");
+                                String taskGroup = currentTask.getString("taskGroup");
+                                Task task = new Task(taskName, taskDesc, taskDifc, taskGroup, taskRep, taskDay, taskMonth
+                                        , taskYear, taskPersonAssigned, taskList);
+                                addToList(task);
+                                numOfTasks++;
+                            }
 
                         } else {
                             Log.d("result", "not equal");

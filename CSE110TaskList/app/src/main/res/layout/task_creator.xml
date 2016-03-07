@@ -63,7 +63,10 @@
         android:clickable="true"
         android:minDate="today"
         android:spinnersShown="true"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        />
 
     <ListView
         android:layout_width="match_parent"
