@@ -74,11 +74,6 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, SignUp.class);
             startActivity(i);
         }
-        else if (v.getId() == R.id.B_about) {
-            Intent i = new Intent(this, About.class);
-            startActivity(i);
-        }
-
     }
 }
 
