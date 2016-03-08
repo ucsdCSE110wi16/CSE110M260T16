@@ -46,7 +46,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity android:name=".YourTaskList" />
-
+        <activity android:name=".TaskLog"/>
     </application>
 
 </manifest>

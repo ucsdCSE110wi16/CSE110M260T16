@@ -23,6 +23,8 @@ public class TaskView extends Activity {
     Task task;
     int position;
 
+    ParseUser currentUser;
+
     int difc;
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,6 +50,8 @@ public class TaskView extends Activity {
         // John, I added this so you can see who is assigned the task when you view it - Steven
         TextView assignedPerson = (TextView) findViewById(R.id.AssignedPerson);
         assignedPerson.setText("Assigned person: " + task.personAssigned);
+
+        currentUser = ParseUser.getCurrentUser();
 
     }
 
@@ -82,7 +86,7 @@ public class TaskView extends Activity {
             }
             ParseObject addLog = new ParseObject("Log");
             addLog.put("group",task.group);
-            addLog.put("text", task.name + "was deleted");
+            addLog.put("text", task.name + " was deleted by " + currentUser.getString("firstName") + " " + currentUser.getString("lastName"));
             addLog.saveInBackground();
             Log.d("completed",task.name + "was deleted");
             //Intent i = new Intent(TaskView.this, TaskList.class);
@@ -179,7 +183,7 @@ public class TaskView extends Activity {
             }
             ParseObject addLog = new ParseObject("Log");
             addLog.put("group",task.group);
-            addLog.put("text", task.name + "was completed");
+            addLog.put("text", task.name + " was completed by " + currentUser.getString("firstName") + " " + currentUser.getString("lastName"));
             addLog.saveInBackground();
             Log.d("completed",task.name + "was completed");
             //Intent i = new Intent(TaskView.this, TaskList.class);

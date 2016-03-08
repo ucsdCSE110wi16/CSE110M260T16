@@ -37,6 +37,14 @@
             android:onClick="lock"
             android:layout_weight="1"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log"
+            android:id="@+id/B_log"
+            android:layout_weight="1"
+            android:onClick="onLogClick" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +55,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Randomize Task"
+            android:text="Balance Tasks"
             android:onClick="randomizeAssignment"
             android:id="@+id/list_randomize"
             android:layout_alignTop="@+id/submit"
